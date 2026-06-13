@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Speech Emotion Analyser project visual</title>
+  <desc id="desc">Audio emotion classification project placeholder visual.</desc>
+  <rect width="1600" height="900" fill="#090d16"/>
+  <rect x="0" y="0" width="1600" height="900" fill="url(#g)"/>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#15233f"/><stop offset="1" stop-color="#080808"/></linearGradient></defs>
+  <text x="120" y="205" fill="#f7931e" font-family="Arial, sans-serif" font-size="36" font-weight="700">AI/ML PROJECT</text>
+  <text x="120" y="320" fill="#ffffff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Speech Emotion</text>
+  <text x="120" y="410" fill="#ffffff" font-family="Arial, sans-serif" font-size="86" font-weight="900">Analyser</text>
+  <text x="120" y="505" fill="#bfc7d5" font-family="Arial, sans-serif" font-size="32">Emotion detection from speech signals</text>
+  <g fill="none" stroke="#f7931e" stroke-width="12" opacity="0.75">
+    <path d="M910 470c45-160 90-160 135 0s90 160 135 0 90-160 135 0 90 160 135 0"/>
+    <path d="M910 560c45-100 90-100 135 0s90 100 135 0 90-100 135 0 90 100 135 0" opacity="0.42"/>
+  </g>
+</svg>

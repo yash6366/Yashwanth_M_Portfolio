@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Multilingual News Summarization and Translation using NLP project visual</title>
+  <desc id="desc">NLP summarization and translation project placeholder visual.</desc>
+  <rect width="1600" height="900" fill="#0c1118"/>
+  <rect x="920" y="150" width="430" height="600" rx="22" fill="#ffffff" opacity="0.08"/>
+  <rect x="980" y="230" width="310" height="24" rx="12" fill="#f7931e" opacity="0.75"/>
+  <rect x="980" y="300" width="250" height="18" rx="9" fill="#ffffff" opacity="0.16"/>
+  <rect x="980" y="350" width="300" height="18" rx="9" fill="#ffffff" opacity="0.16"/>
+  <rect x="980" y="400" width="220" height="18" rx="9" fill="#ffffff" opacity="0.16"/>
+  <rect x="980" y="510" width="300" height="90" rx="16" fill="#f7931e" opacity="0.16"/>
+  <text x="120" y="190" fill="#f7931e" font-family="Arial, sans-serif" font-size="36" font-weight="700">NLP PROJECT</text>
+  <text x="120" y="305" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="900">Multilingual News</text>
+  <text x="120" y="390" fill="#ffffff" font-family="Arial, sans-serif" font-size="78" font-weight="900">Summarization</text>
+  <text x="120" y="480" fill="#cfcfcf" font-family="Arial, sans-serif" font-size="34">Summarization and translation workflow</text>
+  <text x="120" y="585" fill="#9f9f9f" font-family="Arial, sans-serif" font-size="26">Python - NLP - Text Processing - Translation</text>
+</svg>

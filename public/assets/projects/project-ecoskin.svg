@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Eco Skin project visual</title>
+  <desc id="desc">AI skincare recommendation project placeholder visual.</desc>
+  <rect width="1600" height="900" fill="#101010"/>
+  <circle cx="1240" cy="180" r="260" fill="#f7931e" opacity="0.22"/>
+  <circle cx="220" cy="720" r="300" fill="#74d99f" opacity="0.18"/>
+  <rect x="120" y="120" width="720" height="560" rx="28" fill="#ffffff" opacity="0.08" stroke="#ffffff" stroke-opacity="0.14"/>
+  <text x="150" y="210" fill="#f7931e" font-family="Arial, sans-serif" font-size="36" font-weight="700">FINAL YEAR PROJECT</text>
+  <text x="150" y="330" fill="#ffffff" font-family="Arial, sans-serif" font-size="104" font-weight="900">Eco_Skin</text>
+  <text x="150" y="410" fill="#cfcfcf" font-family="Arial, sans-serif" font-size="34">AI-driven skincare advisor</text>
+  <text x="150" y="520" fill="#9f9f9f" font-family="Arial, sans-serif" font-size="26">Python - Machine Learning - Recommendation System</text>
+  <path d="M1090 585c120-188 316-188 436 0-120 188-316 188-436 0Z" fill="#ffffff" opacity="0.11"/>
+  <circle cx="1308" cy="585" r="82" fill="#f7931e" opacity="0.56"/>
+</svg>

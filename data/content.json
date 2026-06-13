@@ -1,0 +1,38 @@
+{
+  "site": {
+    "tagline": "Yashwanth M | Software Developer"
+  },
+  "hero": {
+    "taglineHighlight": "Java",
+    "freelanceNote": "Actively seeking entry-level Software Developer, Java Developer, Full-Stack Developer, and AI/ML Engineer roles.",
+    "availableLabel": "Open to Work",
+    "pills": [
+      "Java",
+      "Full Stack",
+      "AI/ML",
+      "NLP"
+    ],
+    "specialistStat": {
+      "value": "2026",
+      "label": "CSE Graduate"
+    }
+  },
+  "interstitial": {
+    "availabilityLabel": "Open to Entry-Level Roles",
+    "basedInLabel": "Based in Bengaluru",
+    "statLabels": [
+      "Projects\nBuilt",
+      "Internships\nCompleted",
+      "Certifications\nEarned"
+    ]
+  },
+  "footer": {
+    "eyebrow": "Available for software developer, Java, full-stack, and AI/ML roles",
+    "ctaLines": [
+      "Ready to contribute",
+      "to real software",
+      "with curiosity and"
+    ],
+    "ctaAccent": "discipline."
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">BHEL Taxi Booking Application project visual</title>
+  <desc id="desc">Employee transportation booking project placeholder visual.</desc>
+  <rect width="1600" height="900" fill="#111111"/>
+  <rect x="900" y="420" width="520" height="150" rx="35" fill="#f7931e" opacity="0.75"/>
+  <rect x="980" y="320" width="290" height="140" rx="26" fill="#ffffff" opacity="0.14"/>
+  <circle cx="1010" cy="600" r="62" fill="#050505"/>
+  <circle cx="1310" cy="600" r="62" fill="#050505"/>
+  <circle cx="1010" cy="600" r="28" fill="#ffffff" opacity="0.18"/>
+  <circle cx="1310" cy="600" r="28" fill="#ffffff" opacity="0.18"/>
+  <text x="120" y="200" fill="#f7931e" font-family="Arial, sans-serif" font-size="36" font-weight="700">JAVA + MYSQL</text>
+  <text x="120" y="325" fill="#ffffff" font-family="Arial, sans-serif" font-size="92" font-weight="900">BHEL Taxi</text>
+  <text x="120" y="420" fill="#ffffff" font-family="Arial, sans-serif" font-size="92" font-weight="900">Booking</text>
+  <text x="120" y="515" fill="#cfcfcf" font-family="Arial, sans-serif" font-size="34">Employee transportation system</text>
+</svg>
