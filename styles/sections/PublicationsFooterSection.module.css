@@ -340,6 +340,21 @@
   overflow-wrap: anywhere;
 }
 
+.contactValueLink {
+  display: inline-flex;
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(0.92rem, 1.8vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contactValueLink:hover {
+  color: var(--accent);
+}
+
 .contactActions {
   grid-column: 1 / -1;
   display: flex;

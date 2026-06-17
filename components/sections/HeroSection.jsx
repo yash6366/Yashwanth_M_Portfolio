@@ -3,7 +3,7 @@
 import { useEffect, useRef, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { FaGithub, FaLinkedinIn, FaInstagram } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import { FiArrowUpRight, FiDownload } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 
@@ -13,8 +13,8 @@ import styles from '@/styles/sections/HeroSection.module.css'
 
 const HeroBackground = dynamic(() => import('@/components/three/HeroBackground'), { ssr: false })
 
-const SOCIAL_ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Instagram: FaInstagram }
-const SIDEBAR_LABELS  = ['Instagram', 'GitHub', 'LinkedIn']
+const SOCIAL_ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn }
+const SIDEBAR_LABELS  = ['GitHub', 'LinkedIn']
 
 function splitTagline(text, highlight) {
   if (!highlight) return [text]
@@ -45,7 +45,7 @@ export default function HeroSection() {
   function handleViewProjects() {
     const scroller = document.querySelector('main')
     if (scroller) {
-      gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
+      gsap.to(scroller, { scrollTop: 4 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
     }
   }
 

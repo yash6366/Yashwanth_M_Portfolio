@@ -6,16 +6,18 @@ import Navbar                from '@/components/ui/Navbar'
 import VideoIntro            from '@/components/sections/VideoIntro'
 import HeroSection           from '@/components/sections/HeroSection'
 import AboutSection          from '@/components/sections/AboutSection'
+import SkillsSection         from '@/components/sections/SkillsSection'
 import ProjectsSection       from '@/components/sections/ProjectsSection'
 import WorkExperienceSection from '@/components/sections/WorkExperienceSection'
 import CredentialsSection    from '@/components/sections/CredentialsSection'
 import PublicationsFooterSection from '@/components/sections/PublicationsFooterSection'
 import ScreenLoader from '@/components/sections/ScreenLoader'
 import profile               from '@/data/profile.json'
+import styles                from '@/styles/page.module.css'
 
 // Snap: 0=video 1=hero 2=about 3..projects 3+n=work 4+n=credentials 5+n..7+n=footer
 const PROJECT_SLIDES = profile.projects.length
-const TOTAL          = 8 + PROJECT_SLIDES
+const TOTAL          = 9 + PROJECT_SLIDES
 
 export default function Home() {
   const mainRef        = useRef(null)
@@ -157,22 +159,16 @@ export default function Home() {
       {/* Full-screen fade overlay for seamless footer → top loop */}
       <div
         ref={loopOverlayRef}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          background: '#000',
-          zIndex: 9999,
-          opacity: 0,
-          pointerEvents: 'none',
-        }}
+        className={styles.loopOverlay}
       />
 
       <Navbar />
-      <main ref={mainRef} style={{ height: '100vh', overflowY: 'scroll', overscrollBehavior: 'none' }}>
+      <main ref={mainRef} className={styles.mainScroll}>
         <div>
           <VideoIntro />
           <HeroSection />
           <AboutSection />
+          <SkillsSection />
           <ProjectsSection />
           <WorkExperienceSection />
           <CredentialsSection />

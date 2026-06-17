@@ -5,6 +5,8 @@
     "full": "Yashwanth M"
   },
   "email": "yashwanthm2408@gmail.com",
+  "phone": "+91 6366024389",
+  "tel": "tel:+916366024389",
   "tagline": "2026 Computer Science Engineering graduate focused on Java, full-stack development, and AI/ML systems.",
   "description": "Aspiring Software Developer from Bengaluru with hands-on academic and internship experience across Java, web development, databases, AI/ML, and NLP projects.",
   "roles": {
@@ -53,15 +55,31 @@
     "Git",
     "GitHub"
   ],
+  "skillCategories": [
+    { "label": "Backend", "skills": ["Core Java", "C", "Python", "Node.js", "Express.js"] },
+    { "label": "Frontend", "skills": ["HTML", "CSS", "JavaScript", "React.js"] },
+    { "label": "Database", "skills": ["SQL", "MongoDB", "NoSQL concepts"] },
+    { "label": "Cloud & Tools", "skills": ["Google Cloud", "Git", "GitHub"] },
+    { "label": "Concepts", "skills": ["OOP", "MERN Stack", "REST APIs", "SDLC"] }
+  ],
   "education": [
     {
-      "degree": "Bachelor of Engineering",
-      "field": "Computer Science and Engineering",
-      "institution": "Vivekananda Institute of Technology",
-      "university": "Visvesvaraya Technological University (VTU)",
-      "location": "Bengaluru, Karnataka, India",
-      "graduationYear": "2026",
-      "summary": "Focused on software engineering fundamentals, data structures, DBMS, web technologies, Java programming, AI/ML concepts, and project-based application development."
+      "degree": "B.E. in Computer Science & Engineering",
+      "institution": "Vivekananda Institute of Technology, Bengaluru",
+      "year": "2026",
+      "grade": "CGPA 7.22"
+    },
+    {
+      "degree": "Pre-University Board (PUC)",
+      "institution": "KBC Pre-University College, Bengaluru",
+      "year": "2022",
+      "grade": "68%"
+    },
+    {
+      "degree": "CBSE Secondary (10th)",
+      "institution": "Vishwa Venkateshwara International School, Bengaluru",
+      "year": "2020",
+      "grade": "61%"
     }
   ],
   "certifications": [
@@ -83,6 +101,13 @@
     {
       "title": "Java Full Stack with React JS & AI",
       "issuer": "AICTE & BrainOvision",
+      "category": "Full Stack"
+    },
+    {
+      "title": "Java Full Stack Development",
+      "issuer": "Dhee Coding Lab",
+      "status": "In Progress",
+      "year": "2026",
       "category": "Full Stack"
     },
     {
@@ -178,7 +203,7 @@
       "title": "Eco_Skin",
       "subtitle": "AI-driven skincare recommendation system",
       "type": "Final Year Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-ecoskin.svg",
       "tech": [
@@ -198,7 +223,7 @@
       "title": "Speech Emotion Analyser",
       "subtitle": "Emotion detection from speech signals",
       "type": "AI/ML Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-speech-emotion.svg",
       "tech": [
@@ -218,7 +243,7 @@
       "title": "VakCare",
       "subtitle": "AI application built during Shristi Hackathon",
       "type": "Hackathon Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-vakcare.svg",
       "tech": [
@@ -238,7 +263,7 @@
       "title": "YM-Pay",
       "subtitle": "Digital transaction and payment workflow platform",
       "type": "Internship Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-ympay.svg",
       "tech": [
@@ -258,7 +283,7 @@
       "title": "BHEL Taxi Booking Application",
       "subtitle": "Employee transportation booking system",
       "type": "Internship Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-bhel-taxi.svg",
       "tech": [
@@ -278,7 +303,7 @@
       "title": "Multilingual News Summarization and Translation using NLP",
       "subtitle": "NLP system for concise multilingual news access",
       "type": "NLP Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-news-nlp.svg",
       "tech": [
@@ -298,7 +323,7 @@
       "title": "Conversational Memory-Enabled Chatbot for Homework Help",
       "subtitle": "AI chatbot with context-aware study support",
       "type": "AI Project",
-      "github": "",
+      "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-homework-chatbot.svg",
       "tech": [

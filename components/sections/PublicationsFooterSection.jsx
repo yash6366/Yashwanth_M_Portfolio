@@ -8,7 +8,7 @@ import { gsap } from '@/lib/gsap'
 import {
   FaGithub, FaLinkedinIn, FaInstagram, FaYoutube, FaEnvelope,
 } from 'react-icons/fa'
-import { FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
+import { FiArrowUpRight, FiChevronDown, FiPhone } from 'react-icons/fi'
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
 import styles from '@/styles/sections/PublicationsFooterSection.module.css'
@@ -78,7 +78,7 @@ function easeInOut(t) {
 
 function handleViewProjects() {
   const scroller = document.querySelector('main')
-  if (scroller) gsap.to(scroller, { scrollTop: 3 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
+  if (scroller) gsap.to(scroller, { scrollTop: 4 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
 }
 
 export default function PublicationsFooterSection() {
@@ -372,6 +372,7 @@ export default function PublicationsFooterSection() {
           <div className={styles.contactPanel}>
             {[
               ['Email', profile.email],
+              ['Phone', profile.phone],
               ['Location', profile.location.based],
               ['Availability', profile.location.availability],
             ].map(([label, value], i) => (
@@ -383,7 +384,13 @@ export default function PublicationsFooterSection() {
                 <span className={styles.contactNum}>0{i + 1}.</span>
                 <div>
                   <span className={styles.contactLabel}>{label}</span>
-                  <p className={styles.contactValue}>{value}</p>
+                    {label === 'Email' ? (
+                      <a href={`mailto:${profile.email}`} className={styles.contactValueLink}>{value}</a>
+                    ) : label === 'Phone' ? (
+                      <a href={profile.tel} className={styles.contactValueLink}>{value}</a>
+                    ) : (
+                      <p className={styles.contactValue}>{value}</p>
+                    )}
                 </div>
               </div>
             ))}

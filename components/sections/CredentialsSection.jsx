@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { FiArrowUpRight, FiAward, FiBookOpen, FiBriefcase, FiDownload } from 'react-icons/fi'
+import { FiAward, FiBookOpen, FiBriefcase, FiDownload, FiMail, FiPhone } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/CredentialsSection.module.css'
@@ -64,7 +64,8 @@ export default function CredentialsSection() {
     return () => scroller.removeEventListener('scroll', onScroll)
   }, [])
 
-  const education = profile.education[0]
+  const completedCertifications = profile.certifications.filter((cert) => cert.status !== 'In Progress')
+  const inProgressCertification = profile.certifications.find((cert) => cert.status === 'In Progress')
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -91,15 +92,18 @@ export default function CredentialsSection() {
             <FiBookOpen aria-hidden />
             <span>Education</span>
           </div>
-          <h3 className={styles.cardTitle}>{education.degree}</h3>
-          <p className={styles.cardSubtitle}>{education.field}</p>
-          <div className={styles.metaList}>
-            <span>{education.institution}</span>
-            <span>{education.university}</span>
-            <span>{education.location}</span>
-            <span>Graduation Year: {education.graduationYear}</span>
+          <div className={styles.educationList}>
+            {profile.education.map((education) => (
+              <div key={`${education.degree}-${education.institution}`} className={styles.educationItem}>
+                <h3 className={styles.cardTitle}>{education.degree}</h3>
+                <p className={styles.cardSubtitle}>{education.institution}</p>
+                <div className={styles.educationMeta}>
+                  <span>{education.year}</span>
+                  <span>{education.grade}</span>
+                </div>
+              </div>
+            ))}
           </div>
-          <p className={styles.cardBody}>{education.summary}</p>
         </article>
 
         <article
@@ -111,13 +115,23 @@ export default function CredentialsSection() {
             <span>Certifications</span>
           </div>
           <div className={styles.certList}>
-            {profile.certifications.map((cert) => (
+            {completedCertifications.map((cert) => (
               <div key={cert.title} className={styles.certItem}>
                 <span className={styles.certTitle}>{cert.title}</span>
                 <span className={styles.certIssuer}>{cert.issuer} - {cert.category}</span>
               </div>
             ))}
           </div>
+          {inProgressCertification && (
+            <div className={styles.inProgressBanner}>
+              <div>
+                <span className={styles.inProgressLabel}>In Progress</span>
+                <h4 className={styles.inProgressTitle}>{inProgressCertification.title}</h4>
+                <p className={styles.inProgressIssuer}>{inProgressCertification.issuer}</p>
+              </div>
+              <span className={styles.inProgressBadge}>{inProgressCertification.status}</span>
+            </div>
+          )}
         </article>
 
         <article
@@ -138,10 +152,16 @@ export default function CredentialsSection() {
               <FiDownload aria-hidden />
               {profile.resume.label}
             </a>
-            <a href={`mailto:${profile.email}`} className={styles.contactBtn}>
-              Contact Me
-              <FiArrowUpRight aria-hidden />
-            </a>
+            <div className={styles.contactLinks}>
+              <a href={`mailto:${profile.email}`} className={styles.contactLink}>
+                <FiMail aria-hidden />
+                {profile.email}
+              </a>
+              <a href={profile.tel} className={styles.contactLink}>
+                <FiPhone aria-hidden />
+                {profile.phone}
+              </a>
+            </div>
           </div>
         </article>
       </div>

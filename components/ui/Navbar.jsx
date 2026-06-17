@@ -18,10 +18,11 @@ const PROJECT_COUNT = profile.projects.length
 const NAV_ITEMS = [
   { label: 'Home',         idx: 0 },
   { label: 'About',        idx: 2 },
-  { label: 'Projects',     idx: 3 },
-  { label: 'Experience',   idx: 3 + PROJECT_COUNT },
-  { label: 'Credentials',  idx: 4 + PROJECT_COUNT },
-  { label: 'Contact',      idx: 5 + PROJECT_COUNT },
+  { label: 'Skills',       idx: 3 },
+  { label: 'Projects',     idx: 4 },
+  { label: 'Experience',   idx: 4 + PROJECT_COUNT },
+  { label: 'Credentials',  idx: 5 + PROJECT_COUNT },
+  { label: 'Contact',      idx: 6 + PROJECT_COUNT },
 ]
 
 function getIST() {
@@ -71,7 +72,7 @@ export default function Navbar() {
 
       const sectionIdx = Math.round(currentY / vh)
       setOnIntro(currentY < vh * 0.8)
-      setOnDark(sectionIdx >= 3)
+      setOnDark(sectionIdx >= 4)
 
       if (delta > 8 && !hidden.current) {
         gsap.to(headerRef.current, { y: '-100%', duration: 0.35, ease: 'power2.inOut' })

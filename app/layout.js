@@ -114,10 +114,10 @@ export default function RootLayout({ children }) {
                 addressRegion: 'Karnataka',
                 addressCountry: 'IN',
               },
+              telephone: profile.tel,
               alumniOf: profile.education.map((edu) => ({
                 '@type': 'CollegeOrUniversity',
                 name: edu.institution,
-                sameAs: edu.university,
               })),
               knowsAbout: profile.skills,
               sameAs: profile.socials.map((social) => social.href),

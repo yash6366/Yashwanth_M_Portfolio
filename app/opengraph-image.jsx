@@ -198,17 +198,11 @@ export default function Image() {
             justifyContent: 'center',
             overflow: 'hidden',
             position: 'relative',
+            backgroundImage: `url(${photoUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         >
-          <img
-            src={photoUrl}
-            width={420}
-            height={630}
-            alt={profile.name.full}
-            style={{
-              objectFit: 'cover',
-            }}
-          />
 
           <div
             style={{
