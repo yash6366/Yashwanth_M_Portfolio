@@ -40,7 +40,6 @@
   "skills": [
     "Java",
     "Python",
-    "C",
     "JavaScript",
     "TypeScript",
     "HTML",
@@ -58,7 +57,7 @@
     "GitHub"
   ],
   "skillCategories": [
-    { "label": "Backend", "skills": ["Core Java", "C", "Python", "Node.js", "Express.js", "REST APIs"] },
+    { "label": "Backend", "skills": ["Core Java", "Python", "Node.js", "Express.js", "REST APIs"] },
     { "label": "Frontend", "skills": ["React.js", "Next.js", "JavaScript", "HTML5", "CSS3 / Tailwind"] },
     { "label": "Database", "skills": ["MySQL", "SQL Queries", "DBMS", "MongoDB / NoSQL"] },
     { "label": "AI & ML", "skills": ["Machine Learning", "NLP", "Audio Signal Processing", "Conversational AI"] },
