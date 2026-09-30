@@ -1,0 +1,126 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tt-bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="tt-glow" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f7931e" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#f7931e" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="shadow" x="-10" y="-10" width="820" height="520" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Browser Frame Window -->
+  <rect x="20" y="20" width="760" height="460" rx="12" fill="url(#tt-bg)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" filter="url(#shadow)"/>
+  
+  <!-- Browser Window Header -->
+  <path d="M 20 32 Q 20 20 32 20 L 768 20 Q 780 20 780 32 L 780 60 L 20 60 Z" fill="#18181b"/>
+  <line x1="20" y1="60" x2="780" y2="60" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  
+  <!-- Window Controls -->
+  <circle cx="45" cy="40" r="5" fill="#ef4444"/>
+  <circle cx="62" cy="40" r="5" fill="#eab308"/>
+  <circle cx="79" cy="40" r="5" fill="#22c55e"/>
+  
+  <!-- URL Bar -->
+  <rect x="110" y="30" width="400" height="20" rx="5" fill="#09090b" stroke="rgba(255,255,255,0.08)"/>
+  <text x="125" y="44" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500">https://testtrack-pro-web.vercel.app/dashboard</text>
+  
+  <!-- Sidebar Navigation -->
+  <rect x="20" y="60" width="170" height="420" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  
+  <!-- Brand -->
+  <circle cx="45" cy="88" r="9" fill="#f7931e"/>
+  <text x="62" y="93" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" letter-spacing="0.5">TestTrack <tspan fill="#f7931e">Pro</tspan></text>
+  
+  <!-- Nav Items -->
+  <rect x="32" y="115" width="146" height="28" rx="6" fill="rgba(247,147,30,0.15)" stroke="rgba(247,147,30,0.3)" stroke-width="1"/>
+  <text x="46" y="133" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Dashboard &amp; Suites</text>
+  
+  <text x="46" y="170" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Test Execution</text>
+  <text x="46" y="202" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Bug &amp; Issue Tracker</text>
+  <text x="46" y="234" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Analytics &amp; Reports</text>
+  <text x="46" y="266" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Team Workspaces</text>
+
+  <!-- Main Content Area -->
+  <!-- Top Stat Cards -->
+  <rect x="208" y="78" width="130" height="64" rx="8" fill="#18181b" stroke="rgba(255,255,255,0.06)"/>
+  <text x="222" y="98" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-transform="uppercase">Total Test Cases</text>
+  <text x="222" y="128" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900">1,248</text>
+  
+  <rect x="350" y="78" width="130" height="64" rx="8" fill="#18181b" stroke="rgba(255,255,255,0.06)"/>
+  <text x="364" y="98" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-transform="uppercase">Pass Rate</text>
+  <text x="364" y="128" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900">96.4%</text>
+  
+  <rect x="492" y="78" width="130" height="64" rx="8" fill="#18181b" stroke="rgba(255,255,255,0.06)"/>
+  <text x="506" y="98" fill="#f87171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-transform="uppercase">Open Defects</text>
+  <text x="506" y="128" fill="#f87171" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900">14</text>
+  
+  <rect x="634" y="78" width="130" height="64" rx="8" fill="#18181b" stroke="rgba(255,255,255,0.06)"/>
+  <text x="648" y="98" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" text-transform="uppercase">Active Sprint</text>
+  <text x="648" y="128" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="900">Sprint 12</text>
+
+  <!-- Main Table View -->
+  <rect x="208" y="156" width="556" height="308" rx="10" fill="#141416" stroke="rgba(255,255,255,0.08)"/>
+  
+  <!-- Table Header -->
+  <path d="M 208 166 Q 208 156 218 156 L 754 156 Q 764 156 764 166 L 764 190 L 208 190 Z" fill="#1c1c1f"/>
+  <text x="224" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">CASE ID</text>
+  <text x="290" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">TEST SCENARIO</text>
+  <text x="520" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">MODULE</text>
+  <text x="630" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">STATUS</text>
+  <text x="710" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">EXEC</text>
+
+  <!-- Row 1 -->
+  <line x1="208" y1="230" x2="764" y2="230" stroke="rgba(255,255,255,0.04)"/>
+  <text x="224" y="215" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TC-801</text>
+  <text x="290" y="215" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Verify OAuth2 JWT token refresh flow</text>
+  <text x="520" y="215" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Auth Service</text>
+  <rect x="626" y="203" width="58" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="638" y="216" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">PASSED</text>
+  <text x="715" y="215" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">142ms</text>
+
+  <!-- Row 2 -->
+  <line x1="208" y1="272" x2="764" y2="272" stroke="rgba(255,255,255,0.04)"/>
+  <text x="224" y="257" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TC-802</text>
+  <text x="290" y="257" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">PostgreSQL ACID balance transfer rollback</text>
+  <text x="520" y="257" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Ledger API</text>
+  <rect x="626" y="245" width="58" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="638" y="258" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">PASSED</text>
+  <text x="715" y="257" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">88ms</text>
+
+  <!-- Row 3 -->
+  <line x1="208" y1="314" x2="764" y2="314" stroke="rgba(255,255,255,0.04)"/>
+  <text x="224" y="299" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TC-803</text>
+  <text x="290" y="299" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Validate real-time SSE execution logs pipeline</text>
+  <text x="520" y="299" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Streaming</text>
+  <rect x="626" y="287" width="58" height="18" rx="4" fill="rgba(247,147,30,0.15)" stroke="rgba(247,147,30,0.3)"/>
+  <text x="636" y="300" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">RUNNING</text>
+  <text x="715" y="299" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">210ms</text>
+
+  <!-- Row 4 -->
+  <line x1="208" y1="356" x2="764" y2="356" stroke="rgba(255,255,255,0.04)"/>
+  <text x="224" y="341" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TC-804</text>
+  <text x="290" y="341" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Concurrent fleet allocation concurrency locks</text>
+  <text x="520" y="341" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Dispatch</text>
+  <rect x="626" y="329" width="58" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="638" y="342" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">PASSED</text>
+  <text x="715" y="341" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">94ms</text>
+  
+  <!-- Row 5 -->
+  <line x1="208" y1="398" x2="764" y2="398" stroke="rgba(255,255,255,0.04)"/>
+  <text x="224" y="383" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TC-805</text>
+  <text x="290" y="383" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Rate limiter response on burst API calls (429)</text>
+  <text x="520" y="383" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">Security</text>
+  <rect x="626" y="371" width="58" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="638" y="384" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">PASSED</text>
+  <text x="715" y="383" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">62ms</text>
+
+  <!-- Bottom CTA badge -->
+  <rect x="224" y="420" width="160" height="28" rx="6" fill="rgba(247,147,30,0.1)" stroke="rgba(247,147,30,0.3)"/>
+  <text x="238" y="438" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800">LIVE AT TESTTRACK-PRO-WEB</text>
+</svg>

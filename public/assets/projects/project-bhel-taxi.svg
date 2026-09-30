@@ -1,15 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">BHEL Taxi Booking Application project visual</title>
-  <desc id="desc">Employee transportation booking project placeholder visual.</desc>
-  <rect width="1600" height="900" fill="#111111"/>
-  <rect x="900" y="420" width="520" height="150" rx="35" fill="#f7931e" opacity="0.75"/>
-  <rect x="980" y="320" width="290" height="140" rx="26" fill="#ffffff" opacity="0.14"/>
-  <circle cx="1010" cy="600" r="62" fill="#050505"/>
-  <circle cx="1310" cy="600" r="62" fill="#050505"/>
-  <circle cx="1010" cy="600" r="28" fill="#ffffff" opacity="0.18"/>
-  <circle cx="1310" cy="600" r="28" fill="#ffffff" opacity="0.18"/>
-  <text x="120" y="200" fill="#f7931e" font-family="Arial, sans-serif" font-size="36" font-weight="700">JAVA + MYSQL</text>
-  <text x="120" y="325" fill="#ffffff" font-family="Arial, sans-serif" font-size="92" font-weight="900">BHEL Taxi</text>
-  <text x="120" y="420" fill="#ffffff" font-family="Arial, sans-serif" font-size="92" font-weight="900">Booking</text>
-  <text x="120" y="515" fill="#cfcfcf" font-family="Arial, sans-serif" font-size="34">Employee transportation system</text>
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bt-bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <filter id="bt-shadow" x="-10" y="-10" width="820" height="520" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Browser Frame Window -->
+  <rect x="20" y="20" width="760" height="460" rx="12" fill="url(#bt-bg)" stroke="rgba(247,147,30,0.25)" stroke-width="1.5" filter="url(#bt-shadow)"/>
+  
+  <!-- Browser Window Header -->
+  <path d="M 20 32 Q 20 20 32 20 L 768 20 Q 780 20 780 32 L 780 60 L 20 60 Z" fill="#18181b"/>
+  <line x1="20" y1="60" x2="780" y2="60" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  
+  <!-- Window Controls -->
+  <circle cx="45" cy="40" r="5" fill="#ef4444"/>
+  <circle cx="62" cy="40" r="5" fill="#eab308"/>
+  <circle cx="79" cy="40" r="5" fill="#22c55e"/>
+  
+  <!-- URL Bar -->
+  <rect x="110" y="30" width="380" height="20" rx="5" fill="#09090b" stroke="rgba(255,255,255,0.08)"/>
+  <text x="125" y="44" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500">https://btms-ten.vercel.app/dispatch</text>
+  
+  <!-- Left Nav -->
+  <rect x="20" y="60" width="160" height="420" fill="#111113" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <circle cx="45" cy="88" r="9" fill="#f7931e"/>
+  <text x="62" y="93" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800">BTMS <tspan fill="#f7931e">Logistics</tspan></text>
+  
+  <rect x="32" y="115" width="136" height="28" rx="6" fill="rgba(247,147,30,0.15)" stroke="rgba(247,147,30,0.3)"/>
+  <text x="46" y="133" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700">Fleet Dispatch</text>
+  
+  <text x="46" y="170" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Employee Bookings</text>
+  <text x="46" y="202" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Approval Queue</text>
+  <text x="46" y="234" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Driver Roster</text>
+  <text x="46" y="266" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Audit &amp; Gate Passes</text>
+
+  <!-- Main Dispatch Board -->
+  <rect x="198" y="78" width="568" height="65" rx="10" fill="#18181b" stroke="rgba(255,255,255,0.06)"/>
+  <text x="218" y="105" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800">Corporate Transport Dispatch &amp; Routing</text>
+  <text x="218" y="125" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">BHEL Electronics Division • Shift #1 Active Fleet (48 Vehicles Scheduled)</text>
+  
+  <rect x="650" y="96" width="98" height="28" rx="6" fill="#f7931e"/>
+  <text x="662" y="114" fill="#000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="900">+ NEW TRIP</text>
+
+  <!-- Fleet Table -->
+  <rect x="198" y="155" width="568" height="308" rx="10" fill="#141416" stroke="rgba(255,255,255,0.08)"/>
+  <path d="M 198 165 Q 198 155 208 155 L 756 155 Q 766 155 766 165 L 766 190 L 198 190 Z" fill="#1c1c1f"/>
+  
+  <text x="218" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">TRIP ID</text>
+  <text x="280" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">DESTINATION ROUTE</text>
+  <text x="470" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">PASSENGERS</text>
+  <text x="575" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">DISPATCH STATUS</text>
+  <text x="700" y="175" fill="#71717a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">GATE PASS</text>
+
+  <!-- Row 1 -->
+  <line x1="198" y1="230" x2="766" y2="230" stroke="rgba(255,255,255,0.04)"/>
+  <text x="218" y="215" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TR-4401</text>
+  <text x="280" y="215" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">BHEL Unit-2 ➔ Airport Terminal</text>
+  <text x="470" y="215" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">4 Exec Staff</text>
+  <rect x="570" y="203" width="75" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="580" y="216" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">EN ROUTE</text>
+  <text x="700" y="215" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">#GP-8891</text>
+
+  <!-- Row 2 -->
+  <line x1="198" y1="272" x2="766" y2="272" stroke="rgba(255,255,255,0.04)"/>
+  <text x="218" y="257" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TR-4402</text>
+  <text x="280" y="257" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Plant Gate 3 ➔ Tech Center Electronic City</text>
+  <text x="470" y="257" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">6 Engineers</text>
+  <rect x="570" y="245" width="75" height="18" rx="4" fill="rgba(247,147,30,0.15)" stroke="rgba(247,147,30,0.3)"/>
+  <text x="580" y="258" fill="#f7931e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">ASSIGNED</text>
+  <text x="700" y="257" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">#GP-8892</text>
+
+  <!-- Row 3 -->
+  <line x1="198" y1="314" x2="766" y2="314" stroke="rgba(255,255,255,0.04)"/>
+  <text x="218" y="299" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TR-4403</text>
+  <text x="280" y="299" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Substation North ➔ Central R&amp;D Lab</text>
+  <text x="470" y="299" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">2 Managers</text>
+  <rect x="570" y="287" width="75" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="580" y="300" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">APPROVED</text>
+  <text x="700" y="299" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">#GP-8893</text>
+
+  <!-- Row 4 -->
+  <line x1="198" y1="356" x2="766" y2="356" stroke="rgba(255,255,255,0.04)"/>
+  <text x="218" y="341" fill="#f7931e" font-family="monospace" font-size="11" font-weight="700">TR-4404</text>
+  <text x="280" y="341" fill="#e4e4e7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Township Shuttle Route A</text>
+  <text x="470" y="341" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10">18 Employees</text>
+  <rect x="570" y="329" width="75" height="18" rx="4" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)"/>
+  <text x="580" y="342" fill="#4ade80" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="800">COMPLETED</text>
+  <text x="700" y="341" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">#GP-8890</text>
 </svg>

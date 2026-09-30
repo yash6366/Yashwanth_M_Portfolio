@@ -8,6 +8,7 @@ import {
   FaGithub, FaLinkedinIn, FaInstagram, FaYoutube, FaEnvelope,
 } from 'react-icons/fa'
 import { FiArrowUpRight, FiChevronDown, FiCopy, FiCheck } from 'react-icons/fi'
+import { trackEvent } from '@/lib/analytics'
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
 import styles from '@/styles/sections/PublicationsFooterSection.module.css'
@@ -106,6 +107,7 @@ export default function PublicationsFooterSection() {
 
   const copyEmail = () => {
     navigator.clipboard.writeText(profile.email)
+    trackEvent('email_copy', { email: profile.email, location: 'footer_contact' })
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
   }
@@ -406,11 +408,29 @@ export default function PublicationsFooterSection() {
               </div>
             ))}
             <div ref={el => { itemRefs.current[3] = el }} className={styles.contactActions}>
-              <a href={`mailto:${profile.email}`} className={styles.contactPrimary}>
+              <a
+                href={`mailto:${profile.email}`}
+                className={styles.contactPrimary}
+                onClick={() => trackEvent('email_click', { email: profile.email, location: 'footer_contact' })}
+              >
                 Email Me <FiArrowUpRight size={13} aria-hidden="true" />
               </a>
-              <a href={profile.resume.href} className={styles.contactSecondary} download>
-                {profile.resume.label}
+              <a
+                href={profile.resume.href}
+                className={styles.contactViewBtn}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('resume_view', { location: 'footer_contact' })}
+              >
+                View Resume <FiArrowUpRight size={13} aria-hidden="true" />
+              </a>
+              <a
+                href={profile.resume.href}
+                className={styles.contactSecondary}
+                download
+                onClick={() => trackEvent('resume_download', { location: 'footer_contact' })}
+              >
+                Download PDF
               </a>
             </div>
           </div>

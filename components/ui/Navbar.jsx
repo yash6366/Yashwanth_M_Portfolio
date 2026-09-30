@@ -5,6 +5,8 @@ import profile from '@/data/profile.json'
 import styles from '@/styles/ui/Navbar.module.css'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
+import { trackEvent } from '@/lib/analytics'
+
 const NAV_ITEMS = [
   { label: 'Home',        href: '#hero' },
   { label: 'About',       href: '#about' },
@@ -66,6 +68,7 @@ export default function Navbar() {
     e.preventDefault()
     setMenuOpen(false)
     const targetId = href.replace('#', '')
+    trackEvent('nav_click', { section: targetId })
     const targetEl = document.getElementById(targetId)
     if (targetEl) {
       targetEl.scrollIntoView({ behavior: 'smooth' })
@@ -108,6 +111,7 @@ export default function Navbar() {
           href={`mailto:${profile.email}`}
           className={styles.emailBtn}
           aria-label={`Send email to ${profile.email}`}
+          onClick={() => trackEvent('email_click', { email: profile.email, location: 'navbar' })}
         >
           Email me
         </a>

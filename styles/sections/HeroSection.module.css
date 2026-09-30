@@ -186,6 +186,7 @@
 }
 
 .viewBtn,
+.resumeViewBtn,
 .resumeBtn,
 .contactBtn {
   display: inline-flex;
@@ -211,6 +212,18 @@
 
 .viewBtn:hover {
   background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.resumeViewBtn {
+  background: rgba(247, 147, 30, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(247, 147, 30, 0.35);
+}
+
+.resumeViewBtn:hover {
+  background: rgba(247, 147, 30, 0.25);
+  border-color: var(--accent);
   transform: translateY(-1px);
 }
 

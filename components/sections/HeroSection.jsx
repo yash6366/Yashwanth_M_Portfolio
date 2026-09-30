@@ -4,8 +4,9 @@ import { useEffect, useRef, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
-import { FiArrowUpRight, FiDownload, FiMail } from 'react-icons/fi'
+import { FiArrowUpRight, FiEye, FiDownload, FiMail } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
+import { trackEvent } from '@/lib/analytics'
 
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
@@ -44,6 +45,7 @@ export default function HeroSection() {
 
   function handleViewProjects(e) {
     e.preventDefault()
+    trackEvent('hero_view_projects_click')
     const projects = document.getElementById('projects')
     if (projects) {
       projects.scrollIntoView({ behavior: 'smooth' })
@@ -52,6 +54,7 @@ export default function HeroSection() {
 
   function handleContactMe(e) {
     e.preventDefault()
+    trackEvent('hero_contact_click')
     const contact = document.getElementById('contact')
     if (contact) {
       contact.scrollIntoView({ behavior: 'smooth' })
@@ -124,6 +127,7 @@ export default function HeroSection() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent(`${social.label.toLowerCase()}_click`, { source: 'hero_sidebar' })}
               className={styles.socialLink}
               aria-label={social.label}
             >
@@ -173,8 +177,24 @@ export default function HeroSection() {
           <a href="#projects" className={styles.viewBtn} onClick={handleViewProjects}>
             View Projects <FiArrowUpRight size={16} />
           </a>
-          <a href={profile.resume.href} className={styles.resumeBtn} download aria-label="Download Candidate Resume PDF">
-            {profile.resume.label} <FiDownload size={16} />
+          <a
+            href={profile.resume.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent('resume_view', { source: 'hero' })}
+            className={styles.resumeViewBtn}
+            aria-label="View Resume in new tab"
+          >
+            View Resume <FiEye size={16} />
+          </a>
+          <a
+            href={profile.resume.href}
+            download
+            onClick={() => trackEvent('resume_download', { source: 'hero' })}
+            className={styles.resumeBtn}
+            aria-label="Download Candidate Resume PDF"
+          >
+            Download PDF <FiDownload size={16} />
           </a>
           <a href="#contact" className={styles.contactBtn} onClick={handleContactMe}>
             Contact Me <FiMail size={16} />

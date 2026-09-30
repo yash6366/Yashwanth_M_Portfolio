@@ -202,91 +202,117 @@
     {
       "id": 1,
       "title": "TestTrack Pro",
-      "subtitle": "Full-stack test case management and bug tracking system",
-      "type": "Full-Stack Project",
+      "subtitle": "Full-stack test case management and defect tracking system",
+      "type": "Full-Stack / QA Engineering",
       "category": "Full Stack",
       "featured": true,
-      "github": "https://github.com/yash6366",
+      "github": "https://github.com/yash6366/Testtrack-Pro",
       "demo": "https://testtrack-pro-web.vercel.app/",
-      "image": "/assets/projects/project-ecoskin.svg",
+      "image": "/assets/projects/project-testtrack.svg",
+      "tech": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "REST APIs",
+        "QA Workflows",
+        "PostgreSQL"
+      ],
+      "problem": "QA and engineering teams require a centralized platform to author test cases, execute test suites across sprints, and track defect lifecycles without spreadsheet chaos.",
+      "solution": "Developed TestTrack Pro as a full-stack platform featuring tree-structured test suites, execution status state tracking, defect logging, and real-time dashboard analytics.",
+      "challenge": "Modeling relational test execution state trees and dynamic status transitions in a high-performance, responsive UI.",
+      "learning": "Strengthened TypeScript API architecture, automated testing lifecycles, and production deployment on Vercel.",
+      "desc": "A full-stack test suite and defect management platform designed for QA engineers and developers to streamline testing cycles, log issues, and monitor quality metrics.",
+      "caseStudy": {
+        "architecture": "Next.js App Router ➔ TypeScript REST APIs ➔ PostgreSQL Database",
+        "security": "JWT authentication, role-based project workspaces, input sanitization, CSRF guards",
+        "engineering": "Relational test execution tree hierarchy, nested test suites, dynamic pass/fail analytics"
+      }
+    },
+    {
+      "id": 2,
+      "title": "YM-Pay",
+      "subtitle": "Digital transaction and payment workflow platform",
+      "type": "Full-Stack / Fintech",
+      "category": "Full Stack",
+      "featured": true,
+      "github": "https://github.com/yash6366/YM_Pay",
+      "demo": "https://ym-pay.vercel.app/",
+      "image": "/assets/projects/project-ympay.svg",
       "tech": [
         "React",
         "Next.js",
         "JavaScript",
-        "REST APIs",
-        "QA Workflows"
+        "Database",
+        "Authentication",
+        "ACID Ledger"
       ],
-      "problem": "QA and engineering teams need an organized system to author test cases, record execution outcomes, and track defect lifecycles without spreadsheet overhead.",
-      "solution": "Developed TestTrack Pro as a full-stack web application featuring test suite management, execution status tracking, bug reporting, and interactive dashboard analytics.",
-      "challenge": "Structuring complex relational test execution states, nested test suites, and dynamic status updates in a responsive web UI.",
-      "learning": "Strengthened full-stack state management, REST API architecture, test engineering principles, and production deployment on Vercel.",
-      "desc": "A full-stack test suite and defect management platform designed for QA engineers and developers to streamline testing cycles, log issues, and monitor quality metrics."
+      "problem": "Financial transaction interfaces require strict input validation, real-time balance integrity, and immutable ledger record tracking.",
+      "solution": "Developed YM-Pay as a modern digital wallet platform with authentication, instant funds transfer, transaction history, and wallet balance management.",
+      "challenge": "Preventing balance race conditions and maintaining strict atomicity during rapid payment transfers.",
+      "learning": "Mastered full-stack transaction validation, row-level locking principles, and secure web application patterns.",
+      "desc": "A digital payment workflow platform featuring authentication-protected user accounts, instant funds transfers, and comprehensive transaction ledgers.",
+      "caseStudy": {
+        "architecture": "Next.js App Router ➔ API Routes ➔ Database Transaction Ledger",
+        "security": "JWT authentication, HTTP-only cookies, session integrity, rate limiting",
+        "engineering": "ACID atomic balance transfers, row locking to prevent double-spending, audit logs"
+      }
     },
     {
-      "id": 2,
+      "id": 3,
+      "title": "VakCare",
+      "subtitle": "AI-assisted clinical support and healthcare consultation prototype",
+      "type": "AI / Full-Stack",
+      "category": "AI / ML",
+      "featured": true,
+      "github": "https://github.com/yash6366/VakCare",
+      "demo": "https://vak-care-chi.vercel.app/login",
+      "image": "/assets/projects/project-vakcare.svg",
+      "tech": [
+        "AI / ML",
+        "React",
+        "Next.js",
+        "GenAI / LLM",
+        "Firebase",
+        "Rapid MVP"
+      ],
+      "problem": "Patients need an accessible clinical triage assistant to describe symptoms and receive preliminary guidance before tele-consulting physicians.",
+      "solution": "Engineered VakCare as an AI-powered healthcare assistant prototype during the 48-hour Shristi Hackathon at Acharya Institute of Technology.",
+      "challenge": "Rapidly designing an intuitive patient intake flow, integrating AI-assisted symptom triage, and deploying a functional MVP within 48 hours.",
+      "learning": "Excelled in fast-paced hackathon teamwork, high-velocity frontend development, and delivering demonstrable software under tight deadlines.",
+      "desc": "An AI-powered healthcare triage and consultation prototype engineered during the 48-hour Shristi Hackathon to provide accessible patient support workflows.",
+      "caseStudy": {
+        "architecture": "React / Next.js ➔ GenAI / LLM Inference Engine ➔ Firebase & Vercel Edge",
+        "security": "Encrypted patient intake sessions, authenticated doctor consultation portal",
+        "engineering": "48-Hour Shristi Hackathon build, multi-turn symptom dialogue, triage scoring"
+      }
+    },
+    {
+      "id": 4,
       "title": "BTMS (BHEL Taxi System)",
-      "subtitle": "Enterprise employee transportation booking platform",
+      "subtitle": "Enterprise employee transportation booking and dispatch platform",
       "type": "Enterprise / Full-Stack",
       "category": "Full Stack",
       "featured": true,
-      "github": "https://github.com/yash6366",
+      "github": "https://github.com/yash6366/BTMS",
       "demo": "https://btms-ten.vercel.app/",
       "image": "/assets/projects/project-bhel-taxi.svg",
       "tech": [
         "Java",
         "MySQL",
         "JavaScript",
-        "Enterprise CRUD"
+        "Enterprise CRUD",
+        "Logistics"
       ],
       "problem": "Manual taxi request coordination for corporate personnel creates scheduling bottlenecks and lacks centralized auditing.",
-      "solution": "Built the BTMS platform allowing employees to book transportation, track approval states, and assist dispatchers in managing driver assignments.",
+      "solution": "Built the BTMS platform allowing employees to book transportation, track approval states, and assist dispatchers in managing driver allocations.",
       "challenge": "Designing structured database schemas with relational constraints for bookings, locations, drivers, and approval timestamps.",
       "learning": "Deepened Java backend development skills, relational database design, query optimization, and enterprise software reliability.",
-      "desc": "A production-oriented transportation management system built during the BHEL internship to automate taxi booking workflows, driver allocations, and trip logs."
-    },
-    {
-      "id": 3,
-      "title": "YM-Pay",
-      "subtitle": "Digital transaction and payment workflow platform",
-      "type": "Full-Stack Project",
-      "category": "Full Stack",
-      "featured": true,
-      "github": "https://github.com/yash6366",
-      "demo": "https://ym-pay.vercel.app/",
-      "image": "/assets/projects/project-ympay.svg",
-      "tech": [
-        "JavaScript",
-        "Database",
-        "Authentication",
-        "Web Development"
-      ],
-      "problem": "Financial transaction interfaces require strict input validation, clear feedback states, and reliable ledger record management.",
-      "solution": "Developed YM-Pay as a web-based payment simulation platform with user authentication, wallet transaction entry, and real-time history logs.",
-      "challenge": "Managing consistent state across user balances, transaction history entries, and secure authentication flows.",
-      "learning": "Mastered full-stack form validation, transaction state handling, and secure web application patterns.",
-      "desc": "A digital payment workflow platform featuring authentication-protected user accounts, instant funds transfers, and comprehensive transaction ledgers."
-    },
-    {
-      "id": 4,
-      "title": "VakCare",
-      "subtitle": "AI-assisted clinical support and healthcare consultation prototype",
-      "type": "AI / Full-Stack",
-      "category": "AI / ML",
-      "featured": true,
-      "github": "https://github.com/yash6366",
-      "demo": "https://vak-care-chi.vercel.app/login",
-      "image": "/assets/projects/project-vakcare.svg",
-      "tech": [
-        "AI / ML",
-        "React",
-        "Web Technologies",
-        "Rapid Prototyping"
-      ],
-      "problem": "Healthcare consultations need accessible triage tools to help patients describe symptoms and access appropriate health resources quickly.",
-      "solution": "Collaborated on VakCare, an AI-powered healthcare assistant prototype built during the 48-hour Shristi Hackathon at Acharya Institute of Technology.",
-      "challenge": "Rapidly designing an intuitive patient intake flow, integrating AI-assisted guidance, and deploying a functional MVP within 48 hours.",
-      "learning": "Excelled in fast-paced hackathon teamwork, high-velocity frontend development, and delivering demonstrable software under tight deadlines.",
-      "desc": "An AI-powered healthcare triage and consultation prototype engineered during the 48-hour Shristi Hackathon to provide accessible patient support workflows."
+      "desc": "A production-oriented transportation management system built during the BHEL internship to automate taxi booking workflows, driver allocations, and trip logs.",
+      "caseStudy": {
+        "architecture": "Java Backend / Node.js ➔ REST Services ➔ MySQL Relational Schema",
+        "security": "Corporate role permissions (Employee, Dispatcher, Manager, Driver), gate pass verification",
+        "engineering": "Automated ride scheduling queues, fleet dispatch allocation, gate pass generation"
+      }
     },
     {
       "id": 5,
@@ -356,6 +382,28 @@
     },
     {
       "id": 8,
+      "title": "AarogyaVaani",
+      "subtitle": "Voice-enabled regional healthcare assistant prototype",
+      "type": "AI / Speech Prototype",
+      "category": "AI / ML",
+      "featured": false,
+      "github": "https://github.com/yash6366/AarogyaVaani",
+      "demo": "",
+      "image": "/assets/projects/project-vakcare.svg",
+      "tech": [
+        "Python",
+        "Speech AI",
+        "Next.js",
+        "Healthcare NLP"
+      ],
+      "problem": "Rural and non-English-speaking populations face language barriers when communicating medical symptoms to digital health portals.",
+      "solution": "Prototyped AarogyaVaani to provide regional language voice-enabled healthcare symptom logging and audio triage assistance.",
+      "challenge": "Accurate phonetic speech recognition and regional medical lexicon translation.",
+      "learning": "Explored voice signal processing, multilingual speech recognition APIs, and inclusive healthcare design.",
+      "desc": "A voice-first regional health assistant designed to make medical symptom intake accessible across diverse languages."
+    },
+    {
+      "id": 9,
       "title": "Conversational Memory Chatbot",
       "subtitle": "Context-aware AI tutor with multi-turn conversation memory",
       "type": "AI Project",

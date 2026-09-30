@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { FiAward, FiBookOpen, FiBriefcase, FiDownload, FiMail, FiPhone } from 'react-icons/fi'
+import { FiAward, FiBookOpen, FiBriefcase, FiDownload, FiEye, FiMail, FiPhone } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
+import { trackEvent } from '@/lib/analytics'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/CredentialsSection.module.css'
 
@@ -147,16 +148,43 @@ export default function CredentialsSection() {
             ))}
           </ul>
           <div className={styles.ctaRow}>
-            <a href={profile.resume.href} className={styles.resumeBtn} download aria-label="Download resume">
+            <a
+              href={profile.resume.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent('resume_view', { source: 'credentials' })}
+              className={styles.resumeViewBtn}
+              aria-label="View Candidate Resume in new tab"
+            >
+              <FiEye aria-hidden="true" />
+              View Resume
+            </a>
+            <a
+              href={profile.resume.href}
+              download
+              onClick={() => trackEvent('resume_download', { source: 'credentials' })}
+              className={styles.resumeBtn}
+              aria-label="Download Candidate Resume PDF"
+            >
               <FiDownload aria-hidden="true" />
-              {profile.resume.label}
+              Download PDF
             </a>
             <div className={styles.contactLinks}>
-              <a href={`mailto:${profile.email}`} className={styles.contactLink} aria-label={`Email ${profile.email}`}>
+              <a
+                href={`mailto:${profile.email}`}
+                onClick={() => trackEvent('email_click', { source: 'credentials' })}
+                className={styles.contactLink}
+                aria-label={`Email ${profile.email}`}
+              >
                 <FiMail aria-hidden="true" />
                 {profile.email}
               </a>
-              <a href={profile.tel} className={styles.contactLink} aria-label={`Call ${profile.phone}`}>
+              <a
+                href={profile.tel}
+                onClick={() => trackEvent('phone_click', { source: 'credentials' })}
+                className={styles.contactLink}
+                aria-label={`Call ${profile.phone}`}
+              >
                 <FiPhone aria-hidden="true" />
                 {profile.phone}
               </a>
