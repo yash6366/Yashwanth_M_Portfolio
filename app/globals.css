@@ -1,31 +1,37 @@
 @import "tailwindcss";
 
-/* ─── Brand tokens ─────────────────────────────────────── */
+/* ─── Brand design tokens ─────────────────────────────────── */
 :root {
-  /* Hero gradient - exact reference image */
+  /* Hero gradient */
   --hero-start: #f8d5b0;
   --hero-mid:   #f5954a;
   --hero-end:   #e85500;
 
-  /* Accent */
-  --accent:       #f7931e;
-  --accent-hover: #e07b10;
+  /* Accent palette */
+  --accent:         #f7931e;
+  --accent-hover:   #e07b10;
+  --accent-subtle:  rgba(247, 147, 30, 0.12);
+  --accent-border:  rgba(247, 147, 30, 0.28);
+  --accent-glow:    rgba(247, 147, 30, 0.4);
 
-  /* Text */
+  /* Text tokens */
   --text-primary: #1a0800;
   --text-muted:   #4a2800;
   --text-on-dark: #f5f5f5;
+  --text-dark-muted: rgba(255, 255, 255, 0.55);
+  --text-dark:    #1e1e1e;
 
-  /* Surfaces */
-  --surface-white: #ffffff;
-  --surface-black: #0a0a0a;
-  --surface-amber: #fff7ed;
+  /* Surface tokens */
+  --surface-white:    #ffffff;
+  --surface-black:    #0a0a0a;
+  --surface-dark-1:   #060606;
+  --surface-dark-2:   #0e0e0e;
+  --surface-dark-3:   #151515;
+  --surface-amber:    #fff7ed;
+  --surface-card-border: rgba(255, 255, 255, 0.08);
 
   /* Status */
   --status-available: #22c55e;
-
-  /* Text dark token */
-  --text-dark: #1e1e1e;
 
   /* Navbar */
   --navbar-text:    #1a0800;
@@ -33,18 +39,24 @@
   --email-btn-text: #1a0800;
 
   /* Type scale */
-  --hero-name-size: clamp(4.5rem, 13vw, 12rem);
-  --text-body:  clamp(0.9rem, 1.2vw, 1.05rem);
-  --text-small: 0.72rem;
+  --hero-name-size: clamp(4rem, 11vw, 10rem);
+  --text-body:      clamp(0.9rem, 1.2vw, 1.05rem);
+  --text-small:     0.75rem;
   --hero-role-size: clamp(0.75rem, 1.2vw, 0.875rem);
 
-  /* ─── shadcn var bridge (maps to brand tokens) ── */
-  --background:   var(--surface-white);
-  --foreground:   var(--text-primary);
-  --primary:      var(--text-primary);
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* ─── shadcn var bridge ── */
+  --background:         var(--surface-white);
+  --foreground:         var(--text-primary);
+  --primary:            var(--text-primary);
   --primary-foreground: var(--surface-white);
-  --ring:         var(--accent);
-  --radius:       9999px;
+  --ring:               var(--accent);
+  --radius:             9999px;
 }
 
 @theme inline {
@@ -55,27 +67,71 @@
 }
 
 /* ─── Base ──────────────────────────────────────────────── */
-html, body {
-  height: 100%;
-  overflow: hidden;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  background: var(--background);
-  color:      var(--foreground);
+  background: var(--surface-black);
+  color:      var(--text-on-dark);
   font-family: var(--font-geist-sans), Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ─── Hide scrollbar ─────────────────────────────────────── */
-main::-webkit-scrollbar { display: none; }
-main { scrollbar-width: none; -ms-overflow-style: none; }
+/* ─── Focus Styles ──────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ─── Screen Reader Only Helper ─────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100000;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ─── Reduced Motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 @media (max-width: 767px) {
   :root {
-    --hero-name-size: clamp(3rem, 10vw, 5rem);
+    --hero-name-size: clamp(2.6rem, 10vw, 4.5rem);
   }
-
-  /* Override inline 100vh - Chrome mobile toolbar hides bottom content */
-  html, body { height: 100svh !important; }
-  main { height: 100svh !important; }
 }

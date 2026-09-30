@@ -1,14 +1,13 @@
-
 'use client'
 
-import { useEffect, useRef, Fragment } from 'react'
+import { useEffect, useRef, useState, Fragment } from 'react'
 import Image from 'next/image'
 import * as THREE from 'three'
 import { gsap } from '@/lib/gsap'
 import {
   FaGithub, FaLinkedinIn, FaInstagram, FaYoutube, FaEnvelope,
 } from 'react-icons/fa'
-import { FiArrowUpRight, FiChevronDown, FiPhone } from 'react-icons/fi'
+import { FiArrowUpRight, FiChevronDown, FiCopy, FiCheck } from 'react-icons/fi'
 import profile from '@/data/profile.json'
 import content from '@/data/content.json'
 import styles from '@/styles/sections/PublicationsFooterSection.module.css'
@@ -76,11 +75,6 @@ function easeInOut(t) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
 }
 
-function handleViewProjects() {
-  const scroller = document.querySelector('main')
-  if (scroller) gsap.to(scroller, { scrollTop: 4 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
-}
-
 export default function PublicationsFooterSection() {
   const wrapperRef = useRef(null)
   const stickyRef  = useRef(null)
@@ -89,7 +83,7 @@ export default function PublicationsFooterSection() {
   const imageWrapRef    = useRef(null)
   const imageOverlayRef = useRef(null)
 
-  // publication content
+  // contact / pub content
   const pubContentRef = useRef(null)
   const labelRef      = useRef(null)
   const headingRef    = useRef(null)
@@ -108,26 +102,34 @@ export default function PublicationsFooterSection() {
   const bigNameRef      = useRef(null)
   const bottomBarRef    = useRef(null)
 
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(profile.email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2500)
+  }
+
   useEffect(() => {
     const wrapper       = wrapperRef.current
     const sticky        = stickyRef.current
     const canvas        = canvasRef.current
     const videoEl       = videoSrcRef.current
-    const scroller      = document.querySelector('main')
-    if (!wrapper || !sticky || !scroller) return
+    if (!wrapper || !sticky) return
 
     const isMobile = window.innerWidth < 768
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    let renderer, vidUni, rafId, videoPlaying = false
+    let renderer, vidUni, rafId, videoPlaying = false, isVisible = true
     let onMouseMove = () => {}, onResize = () => {}
 
-    if (!isMobile && canvas && videoEl) {
+    if (!isMobile && !prefersReducedMotion && canvas && videoEl) {
       // ── Three.js video setup ────────────────────────────────
-      const W = sticky.offsetWidth
-      const H = sticky.offsetHeight
+      const W = sticky.offsetWidth || window.innerWidth
+      const H = sticky.offsetHeight || window.innerHeight
 
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false })
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' })
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
       renderer.setSize(W, H)
       renderer.setClearColor(0x000000, 0)
 
@@ -139,7 +141,7 @@ export default function PublicationsFooterSection() {
       videoEl.muted     = true
       videoEl.playsInline = true
       videoEl.loop      = true
-      videoEl.preload   = 'auto'
+      videoEl.preload   = 'none'
 
       const vidTex = new THREE.VideoTexture(videoEl)
       vidTex.minFilter = THREE.LinearFilter
@@ -155,6 +157,7 @@ export default function PublicationsFooterSection() {
         if (videoEl.videoWidth && videoEl.videoHeight)
           vidUni.uVideoAspect.value = videoEl.videoWidth / videoEl.videoHeight
       }, { once: true })
+
       const vidMat = new THREE.ShaderMaterial({
         uniforms: vidUni,
         vertexShader: VID_VERT,
@@ -185,18 +188,20 @@ export default function PublicationsFooterSection() {
       window.addEventListener('resize', onResize)
 
       function tick() {
+        if (isVisible) {
+          mx.x += (mx.tx - mx.x) * 0.04
+          mx.y += (mx.ty - mx.y) * 0.04
+          vidMesh.position.x = mx.x * 14
+          vidMesh.position.y = mx.y * -8
+          vidTex.needsUpdate = true
+          renderer.render(scene, camera)
+        }
         rafId = requestAnimationFrame(tick)
-        mx.x += (mx.tx - mx.x) * 0.04
-        mx.y += (mx.ty - mx.y) * 0.04
-        vidMesh.position.x = mx.x * 14
-        vidMesh.position.y = mx.y * -8
-        vidTex.needsUpdate = true
-        renderer.render(scene, camera)
       }
       tick()
     }
 
-    // ── Publication entry animation ───────────────────────────
+    // ── Contact entry animation ───────────────────────────
     let pubAnimDone = false
 
     function resetPubAnim() {
@@ -220,20 +225,22 @@ export default function PublicationsFooterSection() {
       })
     }
 
-    // ── Initial image position (full-width background) ───────
+    // ── Initial image position ───────
     function setImageLeft() {
       const vw = window.innerWidth
       gsap.set(imageWrapRef.current, { width: vw, x: 0, opacity: 1 })
       if (imageOverlayRef.current) gsap.set(imageOverlayRef.current, { opacity: 1 })
     }
 
-    // ── Scroll-driven animation ───────────────────────────────
+    // ── Scroll-driven animation (works with native browser scrolling) ──
     function onScroll() {
       const vh   = window.innerHeight
-      // getBoundingClientRect is reliable regardless of offsetParent chain or navbar
-      const dist = -wrapper.getBoundingClientRect().top
+      const rect = wrapper.getBoundingClientRect()
+      const dist = -rect.top
 
-      // Entry: play pub animation when section first enters view
+      // Visibility for RAF optimization
+      isVisible = rect.bottom > 0 && rect.top < window.innerHeight
+
       if (dist > -vh * 0.5 && dist < vh * 0.35) {
         playPubAnim()
       } else if (dist < -vh * 0.4) {
@@ -241,11 +248,9 @@ export default function PublicationsFooterSection() {
         setImageLeft()
       }
 
-      // 300vh/svh wrapper → 2 viewports of scroll travel (same for mobile + desktop)
       const p = Math.max(0, Math.min(1, dist / (2 * vh)))
 
-      // ── Phase 1: pub text fades out ──────────────────────
-      // Mobile: p 0 → 0.25 | Desktop: p 0 → 0.28
+      // Phase 1: Contact text fades out
       const pubFadeEnd = isMobile ? 0.25 : 0.28
       const pubFade = 1 - Math.max(0, Math.min(1, p / pubFadeEnd))
       gsap.set(pubContentRef.current, { opacity: pubFade, pointerEvents: pubFade > 0.05 ? 'auto' : 'none' })
@@ -253,13 +258,10 @@ export default function PublicationsFooterSection() {
       const vw = window.innerWidth
 
       if (isMobile) {
-        // footer-mobile.webp static background - interstitial fades between pub and footer
         const interIn  = Math.max(0, Math.min(1, (p - 0.28) / 0.17))
         const interOut = Math.max(0, Math.min(1, (p - 0.60) / 0.12))
         gsap.set(interstitialRef.current, { opacity: interIn * (1 - interOut), pointerEvents: 'none' })
-
       } else {
-        // ── Phase 2: image shrinks full-width → centered (p 0.12 → 0.65) ──
         const imgRaw = Math.max(0, Math.min(1, (p - 0.12) / 0.53))
         const imgP   = easeInOut(imgRaw)
 
@@ -268,36 +270,33 @@ export default function PublicationsFooterSection() {
         const w       = startW + imgP * (endW - startW)
         const centerX = imgP * (vw - w) / 2
 
-        // Dark overlay fades as image shrinks
         if (imageOverlayRef.current) {
           gsap.set(imageOverlayRef.current, { opacity: 1 - imgP })
         }
 
-        // ── Interstitial: fade in after pub, fade out before crossfade ──
         const interIn  = Math.max(0, Math.min(1, (p - 0.25) / 0.15))
         const interOut = Math.max(0, Math.min(1, (p - 0.54) / 0.14))
         gsap.set(interstitialRef.current, { opacity: interIn * (1 - interOut), pointerEvents: 'none' })
 
-        // ── Phase 3: sine-eased crossfade image → video (p 0.65 → 0.92) ──
-        // Sine ease: both curves share same t so they are perceptually matched
         const xfadeRaw = Math.max(0, Math.min(1, (p - 0.65) / 0.27))
         const xfade    = 0.5 - 0.5 * Math.cos(Math.PI * xfadeRaw)
 
         gsap.set(imageWrapRef.current, { width: w, x: centerX, opacity: 1 - xfade })
-        vidUni.uOpacity.value = xfade
+        if (vidUni) vidUni.uOpacity.value = xfade
 
-        if (xfade > 0.04 && !videoPlaying) {
-          videoPlaying = true
-          videoEl.play().catch(() => {})
-        } else if (xfade <= 0.04 && videoPlaying) {
-          videoPlaying = false
-          videoEl.pause()
-          videoEl.currentTime = 0
+        if (videoEl) {
+          if (xfade > 0.04 && !videoPlaying) {
+            videoPlaying = true
+            videoEl.play().catch(() => {})
+          } else if (xfade <= 0.04 && videoPlaying) {
+            videoPlaying = false
+            videoEl.pause()
+            videoEl.currentTime = 0
+          }
         }
       }
 
-      // ── Footer text fades in ──────────────────────────────
-      // Mobile: p 0.72 → 0.92 | Desktop: p 0.75 → 1.0
+      // Footer text fades in
       const footerStart = isMobile ? 0.72 : 0.75
       const footerRange = isMobile ? 0.20 : 0.25
       const footerFade = Math.max(0, Math.min(1, (p - footerStart) / footerRange))
@@ -306,12 +305,12 @@ export default function PublicationsFooterSection() {
 
     resetPubAnim()
     setImageLeft()
-    scroller.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
-      scroller.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', onScroll)
       sticky.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('resize', onResize)
       if (renderer) renderer.dispose()
@@ -321,36 +320,36 @@ export default function PublicationsFooterSection() {
   const year = new Date().getFullYear()
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
+    <div id="contact" ref={wrapperRef} className={styles.wrapper}>
       <div ref={stickyRef} className={styles.sticky}>
 
         {/* ── Video canvas (footer background - desktop) ── */}
-        <canvas ref={canvasRef} className={styles.glCanvas} />
-        <video ref={videoSrcRef} className={styles.hiddenVideo} />
+        <canvas ref={canvasRef} className={styles.glCanvas} aria-hidden="true" />
+        <video ref={videoSrcRef} className={styles.hiddenVideo} aria-hidden="true" />
 
-        {/* ── Mobile background image (footer phase - mobile only) ── */}
-        <div className={styles.mobileFooterBg}>
+        {/* ── Mobile background image ── */}
+        <div className={styles.mobileFooterBg} aria-hidden="true">
           <Image
-            src="/assets/footer.png"
+            src="/assets/footer.webp"
             alt=""
             fill
-            quality={100}
+            quality={80}
             className={styles.mobileFooterBgImg}
             sizes="100vw"
             priority={false}
           />
         </div>
 
-        {/* ── Mobile permanent dark overlay - keeps image visually identical across all 3 sections ── */}
-        <div className={styles.mobileDarkOverlay} aria-hidden />
+        {/* ── Mobile permanent dark overlay ── */}
+        <div className={styles.mobileDarkOverlay} aria-hidden="true" />
 
-        {/* ── Floating image: starts left, moves to center ── */}
-        <div ref={imageWrapRef} className={styles.imageWrap}>
+        {/* ── Floating image ── */}
+        <div ref={imageWrapRef} className={styles.imageWrap} aria-hidden="true">
           <Image
-            src="/assets/footer.png"
+            src="/assets/footer.webp"
             alt=""
             fill
-            quality={100}
+            quality={80}
             className={styles.imageEl}
             sizes="(max-width: 767px) 100vw, 50vw"
             priority={false}
@@ -360,7 +359,7 @@ export default function PublicationsFooterSection() {
 
         {/* ── Contact content ── */}
         <div ref={pubContentRef} className={styles.pubContent}>
-          <span className={styles.watermark} aria-hidden>CONTACT</span>
+          <span className={styles.watermark} aria-hidden="true">CONTACT</span>
 
           <div className={styles.pubHero}>
             <p  ref={labelRef}   className={styles.label}>Next Step</p>
@@ -384,19 +383,31 @@ export default function PublicationsFooterSection() {
                 <span className={styles.contactNum}>0{i + 1}.</span>
                 <div>
                   <span className={styles.contactLabel}>{label}</span>
-                    {label === 'Email' ? (
+                  {label === 'Email' ? (
+                    <div className={styles.emailRow}>
                       <a href={`mailto:${profile.email}`} className={styles.contactValueLink}>{value}</a>
-                    ) : label === 'Phone' ? (
-                      <a href={profile.tel} className={styles.contactValueLink}>{value}</a>
-                    ) : (
-                      <p className={styles.contactValue}>{value}</p>
-                    )}
+                      <button
+                        type="button"
+                        onClick={copyEmail}
+                        className={styles.copyBtn}
+                        aria-label="Copy email address"
+                        title={copied ? "Email copied!" : "Copy email"}
+                      >
+                        {copied ? <FiCheck size={14} color="#4ade80" /> : <FiCopy size={14} />}
+                        <span className={styles.copyTooltip}>{copied ? "Copied!" : "Copy"}</span>
+                      </button>
+                    </div>
+                  ) : label === 'Phone' ? (
+                    <a href={profile.tel} className={styles.contactValueLink}>{value}</a>
+                  ) : (
+                    <p className={styles.contactValue}>{value}</p>
+                  )}
                 </div>
               </div>
             ))}
             <div ref={el => { itemRefs.current[3] = el }} className={styles.contactActions}>
               <a href={`mailto:${profile.email}`} className={styles.contactPrimary}>
-                Email Me <FiArrowUpRight size={13} />
+                Email Me <FiArrowUpRight size={13} aria-hidden="true" />
               </a>
               <a href={profile.resume.href} className={styles.contactSecondary} download>
                 {profile.resume.label}
@@ -406,7 +417,7 @@ export default function PublicationsFooterSection() {
         </div>
 
         {/* ── Image-only interstitial (step 2) ── */}
-        <div ref={interstitialRef} className={styles.interstitial} aria-hidden>
+        <div ref={interstitialRef} className={styles.interstitial} aria-hidden="true">
 
           <div className={styles.interstitialLeft}>
             <div className={styles.interStat}>
@@ -444,7 +455,7 @@ export default function PublicationsFooterSection() {
         </div>
 
         {/* ── Radial vignette (footer phase) ── */}
-        <div className={styles.vignetteOverlay} aria-hidden />
+        <div className={styles.vignetteOverlay} aria-hidden="true" />
 
         {/* ── Footer content ── */}
         <div ref={footerContentRef} className={styles.footerContent}>
@@ -463,7 +474,7 @@ export default function PublicationsFooterSection() {
             <p className={styles.mobileDesc}>{profile.description}</p>
             <div className={styles.mobileCtas}>
               <a href={`mailto:${profile.email}`} className={styles.mobileTalkBtn}>
-                Let&apos;s talk <FiArrowUpRight />
+                Let&apos;s talk <FiArrowUpRight aria-hidden="true" />
               </a>
             </div>
             <div className={styles.mobileSocialRow}>
@@ -472,7 +483,7 @@ export default function PublicationsFooterSection() {
                 if (!s) return null
                 return (
                   <Fragment key={label}>
-                    {i > 0 && <div className={styles.mobileSocialDivider} aria-hidden />}
+                    {i > 0 && <div className={styles.mobileSocialDivider} aria-hidden="true" />}
                     <a href={s.href} target="_blank" rel="noopener noreferrer" className={styles.mobileSocialLink} aria-label={label}>
                       <span className={styles.mobileSocialIconEl}>{MOBILE_SOCIAL_ICONS[label]}</span>
                       <span className={styles.mobileSocialLabelEl}>{label.toUpperCase()}</span>
@@ -481,9 +492,9 @@ export default function PublicationsFooterSection() {
                 )
               })}
             </div>
-            <div className={styles.mobileScrollHint} aria-hidden>
+            <div className={styles.mobileScrollHint} aria-hidden="true">
               <FiChevronDown size={18} />
-              <span className={styles.mobileScrollText}>Scroll to explore</span>
+              <span className={styles.mobileScrollText}>Top of portfolio</span>
             </div>
           </div>
 
@@ -524,7 +535,7 @@ export default function PublicationsFooterSection() {
                   ))}
                 </div>
                 <a href={`mailto:${profile.email}`} className={styles.footerMail}>
-                  <FaEnvelope size={12} />
+                  <FaEnvelope size={12} aria-hidden="true" />
                   {profile.email}
                 </a>
               </div>
@@ -542,7 +553,7 @@ export default function PublicationsFooterSection() {
                   <span className={styles.ctaAccent}>{content.footer.ctaAccent}</span>
                 </p>
                 <a href={`mailto:${profile.email}`} className={styles.talkBtn}>
-                  Let&apos;s talk <FiArrowUpRight size={13} />
+                  Let&apos;s talk <FiArrowUpRight size={13} aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -550,10 +561,10 @@ export default function PublicationsFooterSection() {
           </div>
 
           <div ref={bigNameRef} className={styles.signatureWrap}>
-            <h2 className={styles.signatureText}>{profile.name.full.toUpperCase()}</h2>
+            <span className={styles.signatureText}>{profile.name.full.toUpperCase()}</span>
           </div>
 
-          <div ref={bottomBarRef} className={styles.bottomBar}>
+          <footer ref={bottomBarRef} className={styles.bottomBar}>
             <div className={styles.bottomLeft}>
               <div className={styles.monogram}>
                 <span className={styles.monoLetters}>YM</span>
@@ -561,7 +572,7 @@ export default function PublicationsFooterSection() {
               </div>
               <span className={styles.leftDivider} />
               <div className={styles.copyBlock}>
-                <p className={styles.copy}>© {year} {profile.name.full.toUpperCase()}</p>
+                <p className={styles.copy}>&copy; {year} {profile.name.full.toUpperCase()}</p>
                 <p className={styles.copyAll}>ALL RIGHTS RESERVED</p>
               </div>
             </div>
@@ -574,7 +585,7 @@ export default function PublicationsFooterSection() {
               <span className={styles.barDivider} />
               <span className={styles.sunIcon}>✺</span>
             </div>
-          </div>
+          </footer>
         </div>
 
       </div>

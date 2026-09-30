@@ -215,6 +215,23 @@
   transform: translate3d(0,0,0);
 }
 
+.pressKeyHint {
+  position: relative;
+  z-index: 2;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.kbd {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  font-family: var(--font-geist-mono), monospace;
+  color: var(--accent);
+}
+
 @media (max-width: 480px) {
   .monogram {
     letter-spacing: 0.2em;
@@ -223,5 +240,9 @@
   .startBtn {
     padding: 0.85rem 2.25rem;
     font-size: 0.68rem;
+  }
+
+  .pressKeyHint {
+    display: none;
   }
 }

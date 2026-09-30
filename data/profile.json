@@ -11,7 +11,7 @@
   "description": "Aspiring Software Developer from Bengaluru with hands-on academic and internship experience across Java, web development, databases, AI/ML, and NLP projects.",
   "roles": {
     "short": "Software Developer",
-    "detailed": "Java Developer - Full-Stack Developer - AI/ML Enthusiast"
+    "detailed": "Java Developer • Full-Stack Developer • AI/ML Enthusiast"
   },
   "location": {
     "based": "Bengaluru, Karnataka, India",
@@ -22,10 +22,10 @@
     "label": "Download Resume",
     "href": "/resume/Yashwanth-M-Resume.pdf"
   },
-  "bio": "I am a 2026 Computer Science and Engineering graduate from Vivekananda Institute of Technology, VTU, Bengaluru. My work spans Java, Python, JavaScript, React, MySQL, DBMS, machine learning, artificial intelligence, and NLP. Through internships and academic projects, I have built practical applications such as booking systems, digital payment workflows, speech emotion analysis, skincare recommendation systems, summarization tools, and chatbot experiences. I am looking for entry-level Software Developer, Java Developer, Full-Stack Developer, and AI/ML Engineer roles where I can contribute, learn quickly, and grow into a reliable product engineer.",
+  "bio": "I am a 2026 Computer Science and Engineering graduate from Vivekananda Institute of Technology, VTU, Bengaluru. My work spans Java, Python, JavaScript, React, Next.js, MySQL, DBMS, machine learning, artificial intelligence, and NLP. Through internships and engineering projects, I have built production-ready applications such as booking systems, test case managers, digital payment workflows, speech emotion analysis, skincare recommendation systems, and conversational AI tools. I am looking for entry-level Software Developer, Java Developer, Full-Stack Developer, and AI/ML Engineer roles where I can contribute, learn quickly, and build reliable software products.",
   "stats": [
     {
-      "value": "7",
+      "value": "8",
       "label": "Projects Built"
     },
     {
@@ -42,11 +42,13 @@
     "Python",
     "C",
     "JavaScript",
+    "TypeScript",
     "HTML",
     "CSS",
     "React",
     "Next.js",
     "Node.js",
+    "Express.js",
     "MySQL",
     "DBMS",
     "Machine Learning",
@@ -56,18 +58,18 @@
     "GitHub"
   ],
   "skillCategories": [
-    { "label": "Backend", "skills": ["Core Java", "C", "Python", "Node.js", "Express.js"] },
-    { "label": "Frontend", "skills": ["HTML", "CSS", "JavaScript", "React.js"] },
-    { "label": "Database", "skills": ["SQL", "MongoDB", "NoSQL concepts"] },
-    { "label": "Cloud & Tools", "skills": ["Google Cloud", "Git", "GitHub"] },
-    { "label": "Concepts", "skills": ["OOP", "MERN Stack", "REST APIs", "SDLC"] }
+    { "label": "Backend", "skills": ["Core Java", "C", "Python", "Node.js", "Express.js", "REST APIs"] },
+    { "label": "Frontend", "skills": ["React.js", "Next.js", "JavaScript", "HTML5", "CSS3 / Tailwind"] },
+    { "label": "Database", "skills": ["MySQL", "SQL Queries", "DBMS", "MongoDB / NoSQL"] },
+    { "label": "AI & ML", "skills": ["Machine Learning", "NLP", "Audio Signal Processing", "Conversational AI"] },
+    { "label": "Cloud & Tools", "skills": ["Git", "GitHub", "Vercel", "Google Cloud", "SDLC / Agile"] }
   ],
   "education": [
     {
       "degree": "B.E. in Computer Science & Engineering",
       "institution": "Vivekananda Institute of Technology, Bengaluru",
       "year": "2026",
-      "grade": "CGPA 7.22"
+      "grade": "CGPA 7.8"
     },
     {
       "degree": "Pre-University Board (PUC)",
@@ -124,9 +126,9 @@
   "achievements": [
     "Participant - Shristi Hackathon (48 Hours)",
     "Participant - Inter College Project Expo",
-    "Completed BHEL Internship",
-    "Completed Edunet Foundation Internship",
-    "Completed Indpro Internship"
+    "Completed BHEL Software Development Internship",
+    "Completed Edunet Foundation Full-Stack Internship",
+    "Completed Indpro Software Development Internship"
   ],
   "experience": [
     {
@@ -139,11 +141,11 @@
       "period": "Aug 2025",
       "periodEnd": "Sep 2025",
       "bullets": [
-        "Developed a Taxi Booking Application to digitize employee transportation requests and simplify booking workflows.",
-        "Worked with Java, MySQL, and web technologies to design application modules, manage booking records, and support data-driven operations.",
-        "Practiced requirement understanding, database integration, debugging, testing, and presenting software progress in a professional engineering environment."
+        "Developed BTMS (Taxi Booking Application) to digitize employee transportation requests and simplify enterprise dispatch workflows.",
+        "Engineered backend modules with Java and MySQL to manage booking records, role permissions, and transportation scheduling data.",
+        "Practiced professional requirements analysis, database indexing, testing, and sprint progress presentations."
       ],
-      "desc": "Built an employee taxi booking workflow for BHEL while learning practical software development, database design, testing, and maintainable application structure.",
+      "desc": "Built an employee transportation management system (BTMS) for BHEL with Java, MySQL, structured database design, and end-to-end booking lifecycle tracking.",
       "tech": [
         "Java",
         "MySQL",
@@ -161,11 +163,11 @@
       "period": "Mar 2025",
       "periodEnd": "Apr 2025",
       "bullets": [
-        "Built YM-Pay, a digital transaction platform with user authentication, transaction entry, account workflows, and payment history management.",
-        "Implemented frontend and database-backed modules while learning secure form handling, validation, user flow design, and transaction data organization.",
-        "Strengthened full-stack fundamentals by connecting UI screens with persistent records and testing critical payment workflow scenarios."
+        "Built YM-Pay, a full-stack digital payment portal with user authentication, transactional ledger records, and account workflows.",
+        "Engineered secure form handling, data validation, responsive transaction history views, and persistent database record mapping.",
+        "Tested payment workflow scenarios and implemented interactive transaction feedback for end users."
       ],
-      "desc": "Created a payment workflow project during the Edunet internship and gained practical exposure to authentication, database records, and full-stack development patterns.",
+      "desc": "Created a payment and ledger platform during the Edunet internship, strengthening full-stack development, authentication workflows, and database integration.",
       "tech": [
         "JavaScript",
         "Database",
@@ -183,11 +185,11 @@
       "period": "Feb 2026",
       "periodEnd": "Mar 2026",
       "bullets": [
-        "Assisted with software development, debugging, testing, and application enhancement tasks in a collaborative engineering workflow.",
-        "Worked with JavaScript, Java, and database concepts to understand code maintenance, defect analysis, and incremental feature improvement.",
-        "Learned professional practices around requirement discussion, task breakdown, code review feedback, and quality-focused delivery."
+        "Assisted engineering team with software development, debugging, unit testing, and modular application feature enhancements.",
+        "Worked with JavaScript, Java, and database concepts to resolve software defects and optimize existing code paths.",
+        "Participated in agile code reviews, task breakdown discussions, and quality-driven software releases."
       ],
-      "desc": "Gained applied exposure to real-world software engineering workflows, debugging, testing, and collaborative development practices.",
+      "desc": "Gained applied experience in production-grade software engineering, collaborative debugging, structured code maintenance, and agile delivery.",
       "tech": [
         "Java",
         "JavaScript",
@@ -200,71 +202,58 @@
   "projects": [
     {
       "id": 1,
-      "title": "Eco_Skin",
-      "subtitle": "AI-driven skincare recommendation system",
-      "type": "Final Year Project",
+      "title": "TestTrack Pro",
+      "subtitle": "Full-stack test case management and bug tracking system",
+      "type": "Full-Stack Project",
+      "category": "Full Stack",
+      "featured": true,
       "github": "https://github.com/yash6366",
-      "demo": "",
+      "demo": "https://testtrack-pro-web.vercel.app/",
       "image": "/assets/projects/project-ecoskin.svg",
       "tech": [
-        "Python",
-        "Machine Learning",
-        "AI",
-        "Recommendation System"
+        "React",
+        "Next.js",
+        "JavaScript",
+        "REST APIs",
+        "QA Workflows"
       ],
-      "problem": "Users often struggle to choose skincare products because recommendations are generic and do not reflect individual skin concerns.",
-      "solution": "Built an AI-driven advisor that captures skin-related inputs and generates personalized skincare suggestions using rule-based and ML-assisted recommendation logic.",
-      "challenge": "Designing a practical input flow, mapping user concerns to recommendations, and keeping outputs explainable for non-technical users.",
-      "learning": "Learned how to translate a real-world wellness problem into an AI-assisted application with structured inputs, recommendation logic, and user-focused output.",
-      "desc": "An AI-powered skincare advisor that analyzes user skin concerns and recommends personalized skincare routines. The project combines Python, AI concepts, and recommendation logic to solve a practical consumer decision problem."
+      "problem": "QA and engineering teams need an organized system to author test cases, record execution outcomes, and track defect lifecycles without spreadsheet overhead.",
+      "solution": "Developed TestTrack Pro as a full-stack web application featuring test suite management, execution status tracking, bug reporting, and interactive dashboard analytics.",
+      "challenge": "Structuring complex relational test execution states, nested test suites, and dynamic status updates in a responsive web UI.",
+      "learning": "Strengthened full-stack state management, REST API architecture, test engineering principles, and production deployment on Vercel.",
+      "desc": "A full-stack test suite and defect management platform designed for QA engineers and developers to streamline testing cycles, log issues, and monitor quality metrics."
     },
     {
       "id": 2,
-      "title": "Speech Emotion Analyser",
-      "subtitle": "Emotion detection from speech signals",
-      "type": "AI/ML Project",
+      "title": "BTMS (BHEL Taxi System)",
+      "subtitle": "Enterprise employee transportation booking platform",
+      "type": "Enterprise / Full-Stack",
+      "category": "Full Stack",
+      "featured": true,
       "github": "https://github.com/yash6366",
-      "demo": "",
-      "image": "/assets/projects/project-speech-emotion.svg",
+      "demo": "https://btms-ten.vercel.app/",
+      "image": "/assets/projects/project-bhel-taxi.svg",
       "tech": [
-        "Python",
-        "Machine Learning",
-        "Deep Learning",
-        "Audio Processing"
+        "Java",
+        "MySQL",
+        "JavaScript",
+        "Enterprise CRUD"
       ],
-      "problem": "Human emotion in voice is difficult to analyze manually and can be valuable in education, support, and mental-health-adjacent applications.",
-      "solution": "Created a speech emotion classification workflow that processes audio samples, extracts features, and predicts emotional categories such as happy, sad, angry, fearful, and neutral.",
-      "challenge": "Handling variations in speech tone, background noise, and feature extraction while maintaining understandable model evaluation.",
-      "learning": "Gained experience in audio preprocessing, model training, classification metrics, and the limits of ML predictions on human speech data.",
-      "desc": "A machine learning project that classifies emotions from speech audio. It demonstrates audio preprocessing, feature extraction, classification, and model evaluation for AI-driven human-computer interaction."
+      "problem": "Manual taxi request coordination for corporate personnel creates scheduling bottlenecks and lacks centralized auditing.",
+      "solution": "Built the BTMS platform allowing employees to book transportation, track approval states, and assist dispatchers in managing driver assignments.",
+      "challenge": "Designing structured database schemas with relational constraints for bookings, locations, drivers, and approval timestamps.",
+      "learning": "Deepened Java backend development skills, relational database design, query optimization, and enterprise software reliability.",
+      "desc": "A production-oriented transportation management system built during the BHEL internship to automate taxi booking workflows, driver allocations, and trip logs."
     },
     {
       "id": 3,
-      "title": "VakCare",
-      "subtitle": "AI application built during Shristi Hackathon",
-      "type": "Hackathon Project",
-      "github": "https://github.com/yash6366",
-      "demo": "",
-      "image": "/assets/projects/project-vakcare.svg",
-      "tech": [
-        "AI",
-        "Web Technologies",
-        "Rapid Prototyping",
-        "Team Collaboration"
-      ],
-      "problem": "Hackathon environments require quickly converting a problem idea into a working technical prototype under strict time constraints.",
-      "solution": "Collaborated on VakCare, an AI-driven application prototype built during the 48-hour Shristi Hackathon at Acharya Institute of Technology.",
-      "challenge": "Prioritizing features, building quickly, coordinating with teammates, and producing a demonstrable solution within 48 hours.",
-      "learning": "Improved rapid prototyping, teamwork, presentation, and decision-making skills under real competition pressure.",
-      "desc": "A 48-hour hackathon AI application prototype focused on turning an idea into a usable proof of concept. The project highlights teamwork, fast execution, and practical AI application thinking."
-    },
-    {
-      "id": 4,
       "title": "YM-Pay",
       "subtitle": "Digital transaction and payment workflow platform",
-      "type": "Internship Project",
+      "type": "Full-Stack Project",
+      "category": "Full Stack",
+      "featured": true,
       "github": "https://github.com/yash6366",
-      "demo": "",
+      "demo": "https://ym-pay.vercel.app/",
       "image": "/assets/projects/project-ympay.svg",
       "tech": [
         "JavaScript",
@@ -272,37 +261,85 @@
         "Authentication",
         "Web Development"
       ],
-      "problem": "Digital payment platforms need clear user flows for authentication, transaction entry, record keeping, and payment history.",
-      "solution": "Developed YM-Pay as a web-based transaction platform with user account workflows, transaction management, and payment history records.",
-      "challenge": "Maintaining clean data flow between UI forms, stored records, and transaction history while keeping the experience simple.",
-      "learning": "Strengthened full-stack thinking around validation, user flow design, database-backed records, and transactional UI patterns.",
-      "desc": "A digital payment workflow project built during internship training. It includes authentication-oriented flows, transaction records, payment history, and database-backed user modules."
+      "problem": "Financial transaction interfaces require strict input validation, clear feedback states, and reliable ledger record management.",
+      "solution": "Developed YM-Pay as a web-based payment simulation platform with user authentication, wallet transaction entry, and real-time history logs.",
+      "challenge": "Managing consistent state across user balances, transaction history entries, and secure authentication flows.",
+      "learning": "Mastered full-stack form validation, transaction state handling, and secure web application patterns.",
+      "desc": "A digital payment workflow platform featuring authentication-protected user accounts, instant funds transfers, and comprehensive transaction ledgers."
+    },
+    {
+      "id": 4,
+      "title": "VakCare",
+      "subtitle": "AI-assisted clinical support and healthcare consultation prototype",
+      "type": "AI / Full-Stack",
+      "category": "AI / ML",
+      "featured": true,
+      "github": "https://github.com/yash6366",
+      "demo": "https://vak-care-chi.vercel.app/login",
+      "image": "/assets/projects/project-vakcare.svg",
+      "tech": [
+        "AI / ML",
+        "React",
+        "Web Technologies",
+        "Rapid Prototyping"
+      ],
+      "problem": "Healthcare consultations need accessible triage tools to help patients describe symptoms and access appropriate health resources quickly.",
+      "solution": "Collaborated on VakCare, an AI-powered healthcare assistant prototype built during the 48-hour Shristi Hackathon at Acharya Institute of Technology.",
+      "challenge": "Rapidly designing an intuitive patient intake flow, integrating AI-assisted guidance, and deploying a functional MVP within 48 hours.",
+      "learning": "Excelled in fast-paced hackathon teamwork, high-velocity frontend development, and delivering demonstrable software under tight deadlines.",
+      "desc": "An AI-powered healthcare triage and consultation prototype engineered during the 48-hour Shristi Hackathon to provide accessible patient support workflows."
     },
     {
       "id": 5,
-      "title": "BHEL Taxi Booking Application",
-      "subtitle": "Employee transportation booking system",
-      "type": "Internship Project",
+      "title": "Eco_Skin",
+      "subtitle": "AI-driven personalized skincare recommendation system",
+      "type": "Final Year Project",
+      "category": "AI / ML",
+      "featured": false,
       "github": "https://github.com/yash6366",
       "demo": "",
-      "image": "/assets/projects/project-bhel-taxi.svg",
+      "image": "/assets/projects/project-ecoskin.svg",
       "tech": [
-        "Java",
-        "MySQL",
-        "Database Design",
-        "Web Technologies"
+        "Python",
+        "Machine Learning",
+        "Recommendation Engine",
+        "Data Analysis"
       ],
-      "problem": "Employee taxi requests can become inefficient when handled manually or without centralized tracking.",
-      "solution": "Built a booking application to manage taxi requests, employee booking records, and transportation workflow data for internal use.",
-      "challenge": "Designing database tables, keeping booking data organized, and building a simple flow that matches real operational needs.",
-      "learning": "Learned practical Java application development, MySQL integration, requirement mapping, and testing for business workflow software.",
-      "desc": "A Java and MySQL-based transportation booking application created for employee taxi reservations. It demonstrates database integration, CRUD-style workflow design, and practical enterprise application thinking."
+      "problem": "Generic skincare advice fails to account for individual skin types, environmental conditions, and sensitive ingredients.",
+      "solution": "Built an intelligent recommendation system that processes individual skin attributes and generates customized product and routine suggestions.",
+      "challenge": "Formulating transparent, rule-assisted ML recommendation logic that provides explainable suggestions to non-technical users.",
+      "learning": "Applied machine learning concepts to real-world consumer wellness data, data cleaning, and recommendation pipelines.",
+      "desc": "An AI-driven skincare advisor combining Python, machine learning algorithms, and structured concern mapping to generate personalized skincare routines."
     },
     {
       "id": 6,
-      "title": "Multilingual News Summarization and Translation using NLP",
-      "subtitle": "NLP system for concise multilingual news access",
+      "title": "Speech Emotion Analyser",
+      "subtitle": "Audio signal processing & acoustic emotion classification",
+      "type": "AI/ML Project",
+      "category": "AI / ML",
+      "featured": false,
+      "github": "https://github.com/yash6366",
+      "demo": "",
+      "image": "/assets/projects/project-speech-emotion.svg",
+      "tech": [
+        "Python",
+        "Audio Processing",
+        "Machine Learning",
+        "Feature Extraction"
+      ],
+      "problem": "Automated sentiment analysis traditionally relies on text, missing acoustic emotional cues present in voice tone and pitch.",
+      "solution": "Engineered an audio classification pipeline that extracts acoustic features (MFCCs, pitch, energy) from speech samples to predict emotional states.",
+      "challenge": "Handling audio noise variations, normalizing diverse speaker frequencies, and evaluating multi-class classification accuracy.",
+      "learning": "Gained deep experience in audio digital signal preprocessing, feature extraction pipelines, and model evaluation metrics.",
+      "desc": "A machine learning system that classifies emotional nuances from human speech audio samples using audio feature extraction and predictive classifiers."
+    },
+    {
+      "id": 7,
+      "title": "Multilingual News Summarizer",
+      "subtitle": "NLP pipeline for concise multilingual news summarization & translation",
       "type": "NLP Project",
+      "category": "AI / ML",
+      "featured": false,
       "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-news-nlp.svg",
@@ -310,33 +347,35 @@
         "Python",
         "NLP",
         "Text Summarization",
-        "Translation"
+        "Translation Pipelines"
       ],
-      "problem": "News articles are often lengthy and language-specific, making it harder for users to quickly understand important information.",
-      "solution": "Designed an NLP workflow that summarizes long news content and translates it into another language for easier access and faster comprehension.",
-      "challenge": "Balancing summary length, preserving meaning, handling multilingual output, and keeping generated text readable.",
-      "learning": "Gained exposure to NLP preprocessing, summarization pipelines, translation workflows, and evaluating text quality from a user perspective.",
-      "desc": "An NLP project that summarizes long-form news articles and translates the result for multilingual access. It demonstrates text processing, summarization, translation flow, and user-centered AI utility."
+      "problem": "Cross-lingual news consumption is hindered by lengthy articles and language barriers.",
+      "solution": "Designed an NLP pipeline that extracts salient content from long-form news articles and translates concise summaries into target languages.",
+      "challenge": "Maintaining semantic integrity and readability across summarization and translation phases.",
+      "learning": "Explored NLP preprocessing, text tokenization, abstractive/extractive summarization, and translation evaluation.",
+      "desc": "An NLP system that summarizes long-form news articles and provides accurate multilingual translations for fast, accessible information consumption."
     },
     {
-      "id": 7,
-      "title": "Conversational Memory-Enabled Chatbot for Homework Help",
-      "subtitle": "AI chatbot with context-aware study support",
+      "id": 8,
+      "title": "Conversational Memory Chatbot",
+      "subtitle": "Context-aware AI tutor with multi-turn conversation memory",
       "type": "AI Project",
+      "category": "AI / ML",
+      "featured": false,
       "github": "https://github.com/yash6366",
       "demo": "",
       "image": "/assets/projects/project-homework-chatbot.svg",
       "tech": [
         "Python",
-        "AI",
-        "NLP",
+        "AI / NLP",
+        "Context Management",
         "Conversational Systems"
       ],
-      "problem": "Students need learning support that remembers conversation context instead of treating every question as isolated.",
-      "solution": "Built a homework-help chatbot concept with conversational memory so follow-up questions can use prior context and produce more helpful responses.",
-      "challenge": "Managing conversation state, keeping responses relevant, and designing a useful learning assistant without overwhelming the user.",
-      "learning": "Learned the importance of context management, prompt flow, response quality, and responsible AI behavior in educational tools.",
-      "desc": "A conversational AI project for homework assistance with memory-enabled context handling. It focuses on follow-up question support, user-friendly explanations, and AI-assisted learning workflows."
+      "problem": "Stateless chatbots lose context between questions, forcing students to repeatedly re-explain prior steps during homework study.",
+      "solution": "Developed a conversational AI study assistant that maintains multi-turn memory buffers to provide context-aware homework guidance.",
+      "challenge": "Managing context window boundaries and prompt state without hallucinating prior conversation details.",
+      "learning": "Deepened understanding of conversational state management, prompt engineering, and educational AI design principles.",
+      "desc": "A conversational AI chatbot equipped with persistent session memory to assist students with step-by-step problem solving and interactive learning."
     }
   ],
   "publications": [],

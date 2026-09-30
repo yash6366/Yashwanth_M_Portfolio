@@ -59,26 +59,25 @@ export default function WorkExperienceSection() {
     const section = sectionRef.current
     if (!section || !lineRef.current) return
 
-    const scroller = document.querySelector('main')
-    if (!scroller) return
-
-    let isActive = false
+    let isAnimated = false
 
     function resetAnim() {
       tlRef.current?.kill()
-      gsap.set(lineRef.current,      { scaleX: 0, transformOrigin: 'left center' })
-      dotRefs.current.forEach(el  => el && gsap.set(el,  { scale: 0, opacity: 0 }))
+      gsap.set(lineRef.current, { scaleX: 0, transformOrigin: 'left center' })
+      dotRefs.current.forEach(el => el && gsap.set(el, { scale: 0, opacity: 0 }))
       cardRefs.current.forEach(el => el && gsap.set(el, { opacity: 0, y: 28 }))
     }
 
     function playAnim() {
+      if (isAnimated) return
+      isAnimated = true
       resetAnim()
-      const n  = EXPS.length
+      const n = EXPS.length
       const tl = gsap.timeline()
       tlRef.current = tl
-      tl.to(lineRef.current, { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
+      tl.to(lineRef.current, { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, 0)
       EXPS.forEach((_, i) => {
-        const t = i === 0 ? 0.08 : 0.08 + (i / (n - 1)) * 1.44
+        const t = i === 0 ? 0.08 : 0.08 + (i / Math.max(n - 1, 1)) * 1.2
         tl.to(dotRefs.current[i],  { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(2)' }, t)
         tl.to(cardRefs.current[i], { opacity: 1, y: 0,    duration: 0.6, ease: 'power3.out'  }, t + 0.14)
       })
@@ -86,25 +85,31 @@ export default function WorkExperienceSection() {
 
     resetAnim()
 
-    function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.5
-      if (inRange && !isActive)  { isActive = true;  playAnim() }
-      if (!inRange && isActive)  { isActive = false; resetAnim() }
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playAnim()
+        }
+      })
+    }, { threshold: 0.2 })
 
-    scroller.addEventListener('scroll', onScroll, { passive: true })
-    return () => scroller.removeEventListener('scroll', onScroll)
+    observer.observe(section)
+
+    return () => {
+      observer.disconnect()
+      tlRef.current?.kill()
+    }
   }, [])
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section id="experience" ref={sectionRef} className={styles.section} aria-label="Work Experience">
 
-      <div className={styles.bgImg} aria-hidden>
+      <div className={styles.bgImg} aria-hidden="true">
         <Image
-          src="/assets/me.png"
+          src="/assets/me.webp"
           alt=""
           fill
-          quality={100}
+          quality={80}
           sizes="100vw"
           className={styles.bgImgEl}
         />
@@ -112,20 +117,20 @@ export default function WorkExperienceSection() {
 
       <div className={styles.header}>
         <span className={styles.label}>Work Experience</span>
-        <span className={styles.labelRight}>0{EXPS.length} Companies</span>
+        <span className={styles.labelRight}>0{EXPS.length} Organizations</span>
       </div>
 
       <div className={styles.timeline}>
         <div className={styles.timelineBody}>
 
-          {/* Snake connector */}
-          <div ref={lineRef} className={styles.snakeLine} />
+          {/* Snake connector (desktop) */}
+          <div ref={lineRef} className={styles.snakeLine} aria-hidden="true" />
 
           {/* Entry columns */}
           <div className={styles.entries}>
             {EXPS.map((exp, i) => (
               <div
-                key={exp.id}
+                key={exp.id || exp.company}
                 className={styles.entry}
                 onMouseEnter={() => handleCardEnter(i)}
                 onMouseLeave={() => handleCardLeave(i)}
@@ -134,6 +139,7 @@ export default function WorkExperienceSection() {
                 <div
                   ref={el => { dotRefs.current[i] = el }}
                   className={styles.dot}
+                  aria-hidden="true"
                 >
                   <span className={styles.dotNum}>0{i + 1}</span>
                 </div>
@@ -147,8 +153,8 @@ export default function WorkExperienceSection() {
                     <span className={styles.typeTag}>{exp.type}</span>
                     {exp.location && <span className={styles.location}>{exp.location}</span>}
                   </div>
-                  <h2 className={styles.company}>{exp.company}</h2>
-                  <p  className={styles.role}>{exp.role}</p>
+                  <h3 className={styles.company}>{exp.company}</h3>
+                  <p className={styles.role}>{exp.role}</p>
                   <ul
                     ref={el => { bulletListRefs.current[i] = el }}
                     className={styles.bullets}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { FiCloud, FiDatabase, FiLayers, FiMonitor, FiServer } from 'react-icons/fi'
+import { FiCloud, FiDatabase, FiLayers, FiMonitor, FiServer, FiCpu } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/SkillsSection.module.css'
@@ -10,6 +10,7 @@ const CATEGORY_ICONS = {
   Backend: FiServer,
   Frontend: FiMonitor,
   Database: FiDatabase,
+  'AI & ML': FiCpu,
   'Cloud & Tools': FiCloud,
   Concepts: FiLayers,
 }
@@ -21,57 +22,50 @@ export default function SkillsSection() {
 
   useEffect(() => {
     const section = sectionRef.current
-    const scroller = document.querySelector('main')
-    if (!section || !scroller) return
+    if (!section) return
 
-    let active = false
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) return
 
-    function resetAnim() {
-      gsap.set(contentRef.current, { opacity: 0, y: 26 })
-      cardRefs.current.forEach((card) => {
-        if (card) gsap.set(card, { opacity: 0, y: 22 })
-      })
-    }
+    let hasPlayed = false
 
     function playAnim() {
-      resetAnim()
-      gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' })
+      if (hasPlayed) return
+      hasPlayed = true
+
+      gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' })
       gsap.to(cardRefs.current.filter(Boolean), {
         opacity: 1,
         y: 0,
-        duration: 0.55,
+        duration: 0.45,
         ease: 'power3.out',
-        stagger: 0.08,
-        delay: 0.1,
+        stagger: 0.06,
+        delay: 0.08,
       })
     }
 
-    resetAnim()
+    gsap.set(contentRef.current, { opacity: 0, y: 20 })
+    cardRefs.current.forEach((card) => {
+      if (card) gsap.set(card, { opacity: 0, y: 20 })
+    })
 
-    function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.55
-      if (inRange && !active) {
-        active = true
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
         playAnim()
       }
-      if (!inRange && active) {
-        active = false
-        resetAnim()
-      }
-    }
+    }, { threshold: 0.2 })
 
-    scroller.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => scroller.removeEventListener('scroll', onScroll)
+    observer.observe(section)
+    return () => observer.disconnect()
   }, [])
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section id="skills" ref={sectionRef} className={styles.section} aria-label="Core Technical Skills">
       <div ref={contentRef} className={styles.header}>
-        <p className={styles.eyebrow}>Core Skills</p>
-        <h2 className={styles.heading}>Stacked by how I actually build.</h2>
+        <p className={styles.eyebrow}>Core Capabilities</p>
+        <h2 className={styles.heading}>Stacked by how I build software.</h2>
         <p className={styles.subcopy}>
-          A grouped view of the tools, languages, and concepts that shape my day-to-day work.
+          A grouped overview of the programming languages, full-stack frameworks, database systems, AI/ML tools, and deployment environments I work with.
         </p>
       </div>
 
@@ -85,7 +79,7 @@ export default function SkillsSection() {
               className={styles.card}
             >
               <div className={styles.cardTop}>
-                <Icon aria-hidden />
+                <Icon aria-hidden="true" size={16} />
                 <span>{category.label}</span>
               </div>
               <div className={styles.skillTags}>

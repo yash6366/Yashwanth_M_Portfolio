@@ -1,21 +1,20 @@
 .section {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
+  min-height: 100vh;
   z-index: 3;
-  background: #fff;
+  background: #ffffff;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 68%;
   overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* ── Left column ───────────────────────────── */
-
 .photoCol {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 8rem 1.5rem 2.5rem 2.5rem;
+  padding: clamp(5rem, 10vh, 7rem) 1.5rem 3rem clamp(2rem, 4vw, 4rem);
   overflow: visible;
 }
 
@@ -24,7 +23,8 @@
   position: relative;
   width: 100%;
   flex: 1;
-  max-height: 72vh;
+  max-height: 68vh;
+  min-height: 380px;
 }
 
 /* Photo frame */
@@ -33,8 +33,9 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 6px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .photoImg {
@@ -42,14 +43,14 @@
   object-position: top center;
 }
 
-/* Signature - overlaps bottom-right corner of photo */
+/* Signature */
 .signature {
   position: absolute;
-  bottom: 0rem;
-  right: -5rem;
+  bottom: -0.5rem;
+  right: -3.5rem;
   font-family: var(--font-dancing), cursive;
   color: var(--accent);
-  font-size: 5.5rem;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
@@ -63,7 +64,7 @@
 .socials {
   display: flex;
   gap: 0.75rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   align-items: center;
 }
 
@@ -71,65 +72,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
-  background: #f0f0f0;
-  color: #333;
-  font-size: 1.2rem;
+  background: #f4f4f4;
+  color: #222222;
+  font-size: 1.1rem;
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.socialLink:hover {
+.socialLink:hover,
+.socialLink:focus-visible {
   background: var(--accent);
-  color: #fff;
-  transform: translateY(-3px) scale(1.12);
+  color: #ffffff;
+  transform: translateY(-3px) scale(1.08);
 }
 
 /* ── Right column ──────────────────────────── */
-
 .content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 4rem 4rem 3rem;
+  padding: clamp(4rem, 8vh, 6rem) clamp(2rem, 5vw, 5rem) clamp(3rem, 6vh, 4rem) clamp(1.5rem, 3vw, 3rem);
   overflow: hidden;
   min-height: 0;
 }
 
 /* Who I Am label */
 .whoLabel {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
-  margin: 0 0 0.6rem 0;
+  margin: 0 0 0.75rem 0;
   flex-shrink: 0;
 }
 
 /* Who I Am - infinite marquee */
 .marqueeWrap {
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
   flex-shrink: 0;
-  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
 }
 
 .marqueeTrack {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 18s linear infinite;
+  animation: marqueeScroll 22s linear infinite;
 }
 
 .marqueeItem {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #888;
+  color: #777777;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -138,9 +140,9 @@
 
 .marqueeDot {
   color: var(--accent);
-  font-size: 1rem;
+  font-size: 0.85rem;
   line-height: 1;
-  margin: 0 0.4rem;
+  margin: 0 0.5rem;
 }
 
 @keyframes marqueeScroll {
@@ -153,36 +155,31 @@
 }
 
 .bio {
-  font-size: clamp(1rem, 1.6vw, 1.6rem);
-  font-weight: 800;
-  line-height: 1.42;
-  color: #111;
+  font-size: clamp(1.1rem, 1.8vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.65;
+  color: #111111;
   margin: 0;
   width: 100%;
+  letter-spacing: -0.01em;
 }
 
-.typed    { color: #111; }
-.untyped  { color: #c8c8c8; }
+.typed    { color: #111111; }
+.untyped  { color: #d0d0d0; }
 
-/* Cursor lives as ::after on the last typed char - never a sibling node,
-   so it cannot shift adjacent text or change line-wrap decisions. */
 .lastTyped {
-  color: #111;
+  color: #111111;
 }
 .lastTyped::after {
   content: '';
   display: inline-block;
   width: 2px;
-  height: 0.85em;
+  height: 0.9em;
   background: var(--accent);
   margin-left: 2px;
-  margin-right: -4px;   /* absorb its own width */
+  margin-right: -4px;
   vertical-align: text-bottom;
   animation: blink 0.75s step-end infinite;
-}
-
-.cursor {
-  display: none; /* kept to avoid breaking any lingering references */
 }
 
 @keyframes blink {
@@ -190,39 +187,35 @@
   50%       { opacity: 0; }
 }
 
-@media (max-width: 767px) {
-  .content {
-    justify-content: start;
-  }
-
+@media (max-width: 900px) {
   .section {
     grid-template-columns: 1fr;
-    grid-template-rows: 60svh 1fr;
-    height: 100svh;
-    min-height: -webkit-fill-available;
-    overflow: hidden;
+    min-height: auto;
+    padding-bottom: 2rem;
   }
   .photoCol {
-    padding: 3.5rem 1rem 0.5rem;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 0.75rem;
-    overflow: visible;
+    padding: 3.5rem 1.5rem 1rem;
+    flex-direction: column;
+    align-items: center;
   }
-  .photoWrap    { flex: 1; max-height: 100%; align-self: stretch; height: 100%; }
-  .socials      { flex-direction: column; margin-top: 0; gap: 0.4rem; }
-  .socialLink   { width: 2rem; height: 2rem; font-size: 1rem; }
-  .content      { padding: 1rem 1.25rem 0.75rem; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-  .bio          { font-size: clamp(0.72rem, 3vw, 0.95rem); }
-  .marqueeWrap  { margin-bottom: 0.6rem; }
-  .whoLabel     { font-size: 0.8rem; margin-bottom: 0.3rem; }
-  .signature    { font-size: 3rem; bottom: -1rem; right: -0.5rem; }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .section    { grid-template-columns: 35% 65%; }
-  .photoCol   { padding: 5rem 1rem 2rem 1.5rem; }
-  .content    { padding: 3rem 2rem 2rem; }
-  .bio        { font-size: clamp(0.85rem, 1.4vw, 1.2rem); }
-  .signature  { font-size: 4rem; }
+  .photoWrap {
+    max-height: 50vh;
+    min-height: 280px;
+    max-width: 340px;
+  }
+  .signature {
+    font-size: 3.2rem;
+    bottom: -0.8rem;
+    right: -1rem;
+  }
+  .content {
+    padding: 1.5rem 1.5rem 2rem;
+  }
+  .bio {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .marqueeWrap {
+    margin-bottom: 1.2rem;
+  }
 }

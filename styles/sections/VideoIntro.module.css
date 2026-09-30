@@ -81,6 +81,37 @@
   margin-top: 1.25rem;
 }
 
+.introCtas {
+  margin-top: 1.8rem;
+  pointer-events: auto;
+}
+
+.skipBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(247, 147, 30, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.skipBtn:hover,
+.skipBtn:focus-visible {
+  background: var(--accent);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(247, 147, 30, 0.4);
+}
+
 /* ── Paused overlay ─────────────────────────── */
 .playOverlay {
   position: absolute;

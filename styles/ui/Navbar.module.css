@@ -3,33 +3,84 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
-  color: var(--navbar-text);
+  padding: 1.1rem 2rem;
+  color: var(--text-on-dark);
+  background: transparent;
+  transition: background 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  padding: 0.85rem 2rem;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .time {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  position: relative;
 }
 
 .navLink {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  cursor: pointer;
-  color: var(--navbar-text);
-  transition: opacity 0.2s;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  padding: 0.4rem 0.2rem;
+  transition: color 0.2s ease;
+  display: inline-block;
+  position: relative;
 }
 
 .navLink:hover {
-  opacity: 0.6;
+  color: #ffffff;
+}
+
+.activeLink {
+  color: var(--accent);
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 .emailBtn {
@@ -39,62 +90,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   text-decoration: none;
-  transition: color 0.35s ease;
-}
-
-.emailBtn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.35s ease;
-  z-index: -1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
 .emailBtn:hover {
-  color: #000;
-}
-
-.emailBtn:hover::after {
-  transform: scaleX(1);
-}
-
-/* ── Dark section mode (Work Experience) ────── */
-.darkMode {
-  --navbar-text: rgba(255, 255, 255, 0.88);
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.darkMode .navLink {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.darkMode .emailBtn {
-  color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* ── VideoIntro mode: hide time + nav, keep email only ── */
-.introMode .time {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.introMode .navMenu {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@media (max-width: 767px) {
-  .header { padding: 0.75rem 1rem; }
-  .time   { display: none; }
-  .navMenu { display: none; }
+  background: var(--accent);
+  color: #000000;
+  border-color: var(--accent);
 }
 
 .hamburger {
@@ -102,55 +114,103 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--navbar-text);
-  padding: 0.25rem;
+  color: #ffffff;
+  padding: 0.5rem;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
 }
 
-@media (max-width: 767px) {
-  .hamburger { display: flex; }
-  .emailBtn  { display: none; }
+.hamburger:focus-visible {
+  outline: 2px solid var(--accent);
 }
 
 .mobileMenu {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.97);
-  z-index: 50;
+  background: rgba(6, 6, 6, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 2000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2.2rem;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.mobileNavList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
 }
 
 .mobileNavLink {
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color 0.2s ease;
   font-family: var(--font-geist-sans);
 }
 
-.mobileNavLink:hover {
+.mobileNavLink:hover,
+.mobileNavLink:focus-visible {
   color: var(--accent);
 }
 
 .mobileMailLink {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.88rem;
+  color: var(--accent);
   text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(247, 147, 30, 0.4);
+  border-radius: 9999px;
+  background: rgba(247, 147, 30, 0.08);
   margin-top: 1rem;
-  letter-spacing: 0.06em;
-  transition: color 0.2s;
 }
 
-.mobileMailLink:hover {
-  color: var(--accent);
+@media (max-width: 900px) {
+  .header {
+    padding: 0.85rem 1.25rem;
+  }
+  .time {
+    display: none;
+  }
+  .navMenu {
+    display: none;
+  }
+  .emailBtn {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
 }

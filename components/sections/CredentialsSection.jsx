@@ -20,19 +20,20 @@ export default function CredentialsSection() {
 
   useEffect(() => {
     const section = sectionRef.current
-    const scroller = document.querySelector('main')
-    if (!section || !scroller) return
+    if (!section) return
 
-    let active = false
+    let isAnimated = false
 
     function resetAnim() {
-      gsap.set(contentRef.current, { opacity: 0, y: 28 })
+      gsap.set(contentRef.current, { opacity: 0, y: 24 })
       cardRefs.current.forEach((card) => {
-        if (card) gsap.set(card, { opacity: 0, y: 24 })
+        if (card) gsap.set(card, { opacity: 0, y: 20 })
       })
     }
 
     function playAnim() {
+      if (isAnimated) return
+      isAnimated = true
       resetAnim()
       gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' })
       gsap.to(cardRefs.current.filter(Boolean), {
@@ -41,40 +42,38 @@ export default function CredentialsSection() {
         duration: 0.55,
         ease: 'power3.out',
         stagger: 0.08,
-        delay: 0.12,
+        delay: 0.1,
       })
     }
 
     resetAnim()
 
-    function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.55
-      if (inRange && !active) {
-        active = true
-        playAnim()
-      }
-      if (!inRange && active) {
-        active = false
-        resetAnim()
-      }
-    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          playAnim()
+        }
+      })
+    }, { threshold: 0.15 })
 
-    scroller.addEventListener('scroll', onScroll, { passive: true })
-    onScroll()
-    return () => scroller.removeEventListener('scroll', onScroll)
+    observer.observe(section)
+
+    return () => {
+      observer.disconnect()
+    }
   }, [])
 
   const completedCertifications = profile.certifications.filter((cert) => cert.status !== 'In Progress')
   const inProgressCertification = profile.certifications.find((cert) => cert.status === 'In Progress')
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section id="credentials" ref={sectionRef} className={styles.section} aria-label="Academic Credentials and Certifications">
       <div ref={contentRef} className={styles.header}>
         <p className={styles.eyebrow}>Recruiter Snapshot</p>
-        <h2 className={styles.heading}>Education, certifications, and proof of momentum.</h2>
+        <h2 className={styles.heading}>Education, certifications, &amp; momentum.</h2>
         <p className={styles.subcopy}>
-          Built for entry-level screening: academic background, verified learning paths,
-          internship completion, and target roles are visible in one focused section.
+          Built for fast screening: academic background, verified coursework,
+          internship completion, and target roles visible in one structured view.
         </p>
         <div className={styles.roleRow}>
           {TARGET_ROLES.map((role) => (
@@ -89,7 +88,7 @@ export default function CredentialsSection() {
           className={`${styles.card} ${styles.educationCard}`}
         >
           <div className={styles.cardTop}>
-            <FiBookOpen aria-hidden />
+            <FiBookOpen aria-hidden="true" />
             <span>Education</span>
           </div>
           <div className={styles.educationList}>
@@ -111,14 +110,14 @@ export default function CredentialsSection() {
           className={`${styles.card} ${styles.certCard}`}
         >
           <div className={styles.cardTop}>
-            <FiAward aria-hidden />
+            <FiAward aria-hidden="true" />
             <span>Certifications</span>
           </div>
           <div className={styles.certList}>
             {completedCertifications.map((cert) => (
               <div key={cert.title} className={styles.certItem}>
                 <span className={styles.certTitle}>{cert.title}</span>
-                <span className={styles.certIssuer}>{cert.issuer} - {cert.category}</span>
+                <span className={styles.certIssuer}>{cert.issuer} &bull; {cert.category}</span>
               </div>
             ))}
           </div>
@@ -139,7 +138,7 @@ export default function CredentialsSection() {
           className={`${styles.card} ${styles.achievementCard}`}
         >
           <div className={styles.cardTop}>
-            <FiBriefcase aria-hidden />
+            <FiBriefcase aria-hidden="true" />
             <span>Achievements</span>
           </div>
           <ul className={styles.achievementList}>
@@ -148,17 +147,17 @@ export default function CredentialsSection() {
             ))}
           </ul>
           <div className={styles.ctaRow}>
-            <a href={profile.resume.href} className={styles.resumeBtn} download>
-              <FiDownload aria-hidden />
+            <a href={profile.resume.href} className={styles.resumeBtn} download aria-label="Download resume">
+              <FiDownload aria-hidden="true" />
               {profile.resume.label}
             </a>
             <div className={styles.contactLinks}>
-              <a href={`mailto:${profile.email}`} className={styles.contactLink}>
-                <FiMail aria-hidden />
+              <a href={`mailto:${profile.email}`} className={styles.contactLink} aria-label={`Email ${profile.email}`}>
+                <FiMail aria-hidden="true" />
                 {profile.email}
               </a>
-              <a href={profile.tel} className={styles.contactLink}>
-                <FiPhone aria-hidden />
+              <a href={profile.tel} className={styles.contactLink} aria-label={`Call ${profile.phone}`}>
+                <FiPhone aria-hidden="true" />
                 {profile.phone}
               </a>
             </div>

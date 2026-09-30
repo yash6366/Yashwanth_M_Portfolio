@@ -1,5 +1,6 @@
-.mainScroll {
-  height: 100vh;
-  overflow-y: scroll;
-  overscroll-behavior: none;
+.mainWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }

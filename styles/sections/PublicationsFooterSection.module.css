@@ -355,6 +355,46 @@
   color: var(--accent);
 }
 
+.emailRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.45rem;
+}
+
+.emailRow .contactValueLink {
+  margin-top: 0;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.55rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.copyBtn:hover {
+  background: rgba(247, 147, 30, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copyTooltip {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .contactActions {
   grid-column: 1 / -1;
   display: flex;

@@ -1,236 +1,218 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { FiArrowUpRight, FiGithub, FiExternalLink, FiLayers } from 'react-icons/fi'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/ProjectsSection.module.css'
 
-const PROJECTS = profile.projects
+const CATEGORIES = ['All', 'Full Stack', 'AI / ML']
 
 export default function ProjectsSection() {
-  const sectionRef  = useRef(null)
-  const trackRef    = useRef(null)
-  const contentRefs = useRef([])
-  const bgRefs      = useRef([])
-  const counterRef  = useRef(null)
-  const progressRef = useRef(null)
-  const [slideIdx, setSlideIdx] = useState(0)
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProjectId, setSelectedProjectId] = useState(profile.projects[0]?.id || 1)
 
-  useEffect(() => {
-    const section = sectionRef.current
-    const track   = trackRef.current
-    if (!section || !track) return
+  const filteredProjects = activeCategory === 'All'
+    ? profile.projects
+    : profile.projects.filter(p => p.category === activeCategory)
 
-    const scroller = document.querySelector('main')
-    if (!scroller) return
-    const n = PROJECTS.length
-    contentRefs.current = contentRefs.current.slice(0, n)
-    bgRefs.current      = bgRefs.current.slice(0, n)
-
-    // Slides 2+ hidden initially
-    contentRefs.current.forEach((el, i) => {
-      if (el && i > 0) gsap.set(el, { opacity: 0, y: 30 })
-    })
-
-    const tl = gsap.timeline({ paused: true })
-
-    // Horizontal slide - xPercent is viewport-independent
-    tl.to(track, {
-      xPercent: -((n - 1) / n * 100),
-      ease: 'none',
-      duration: n - 1,
-    }, 0)
-
-    for (let i = 0; i < n - 1; i++) {
-      const curr   = contentRefs.current[i]
-      const next   = contentRefs.current[i + 1]
-      const nextBg = bgRefs.current[i + 1]
-
-      if (curr) {
-        tl.to(curr, {
-          opacity: 0, y: -40, filter: 'blur(6px)',
-          duration: 0.2, ease: 'power2.in',
-        }, i + 0.30)
-      }
-
-      if (nextBg) {
-        tl.fromTo(nextBg,
-          { scale: 1.04 },
-          { scale: 1.0, duration: 1.0, ease: 'power2.out' },
-          i
-        )
-      }
-
-      if (next) {
-        tl.set(next, { opacity: 1, y: 0 }, i + 0.44)
-
-        const meta  = next.querySelector(`.${styles.meta}`)
-        const title = next.querySelector(`.${styles.title}`)
-        const sub   = next.querySelector(`.${styles.subtitle}`)
-        const desc  = next.querySelector(`.${styles.desc}`)
-        const tags  = next.querySelectorAll(`.${styles.tag}`)
-        const btn   = next.querySelector(`.${styles.actionRow}`)
-
-        if (meta)  tl.fromTo(meta,  { x: -10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.25, ease: 'power2.out' }, i + 0.45)
-        if (title) tl.fromTo(title, { opacity: 0, y: 20 },  { opacity: 1, y: 0, duration: 0.45, ease: 'expo.out'   }, i + 0.48)
-        if (sub)   tl.fromTo(sub,   { y: 12, opacity: 0 },  { y: 0, opacity: 1, duration: 0.30, ease: 'power2.out' }, i + 0.54)
-        if (desc)  tl.fromTo(desc,  { y: 10, opacity: 0 },  { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' }, i + 0.58)
-        if (tags.length) {
-          tl.fromTo(tags,  { y: 6, opacity: 0 },  { y: 0, opacity: 1, duration: 0.25, ease: 'power2.out', stagger: 0.03 }, i + 0.65)
-        }
-        if (btn)   tl.fromTo(btn,   { y: 8, opacity: 0 },  { y: 0, opacity: 1, duration: 0.30, ease: 'power2.out' }, i + 0.72)
-      }
-    }
-
-    const st = ScrollTrigger.create({
-      trigger:  section,
-      scroller,
-      start:    'top top',
-      end:      () => `+=${(n - 1) * window.innerHeight}`,
-      onUpdate: (self) => {
-        tl.progress(self.progress)
-
-        const activeIdx = Math.round(self.progress * (n - 1))
-        setSlideIdx(prev => prev !== activeIdx ? activeIdx : prev)
-
-        if (progressRef.current) {
-          gsap.set(progressRef.current, {
-            scaleX: self.progress, transformOrigin: 'left center', overwrite: true,
-          })
-        }
-
-        if (counterRef.current) counterRef.current.textContent = `0${activeIdx + 1}`
-      },
-    })
-
-    return () => st.kill()
-  }, [])
+  const activeProject = filteredProjects.find(p => p.id === selectedProjectId) || filteredProjects[0]
 
   return (
-    <div style={{ height: `${PROJECTS.length * 100}vh` }}>
-      <section ref={sectionRef} className={styles.section}>
-
-        {/* Top bar */}
-        <div className={styles.topBar}>
-          <span className={styles.sectionLabel}>Projects</span>
-          <div className={styles.counter}>
-            <span ref={counterRef} className={styles.cCur}>01</span>
-            <span className={styles.cSep}> / </span>
-            <span className={styles.cTot}>0{PROJECTS.length}</span>
-          </div>
+    <section id="projects" className={styles.section} aria-label="Featured Projects Portfolio">
+      {/* Header & Filter Bar */}
+      <div className={styles.topBar}>
+        <div className={styles.headerTitleWrap}>
+          <span className={styles.sectionLabel}>Portfolio Showcase</span>
+          <h2 className={styles.sectionHeading}>Engineered with precision.</h2>
         </div>
 
-        {/* Horizontal track */}
-        <div
-          ref={trackRef}
-          className={styles.track}
-          style={{ width: `${PROJECTS.length * 100}vw` }}
-        >
-          {PROJECTS.map((proj, i) => (
-            <div key={proj.id} className={styles.slide}>
-
-              <div
-                ref={el => { bgRefs.current[i] = el }}
-                className={styles.slideBg}
+        <div className={styles.filterBar} role="tablist" aria-label="Filter projects by category">
+          {CATEGORIES.map(cat => {
+            const isSelected = activeCategory === cat
+            return (
+              <button
+                key={cat}
+                role="tab"
+                aria-selected={isSelected}
+                onClick={() => {
+                  setActiveCategory(cat)
+                  const firstInCat = (cat === 'All' ? profile.projects : profile.projects.filter(p => p.category === cat))[0]
+                  if (firstInCat) setSelectedProjectId(firstInCat.id)
+                }}
+                className={`${styles.filterBtn} ${isSelected ? styles.filterActive : ''}`}
               >
-                <Image
-                  src={proj.image}
-                  alt={proj.title}
-                  fill
-                  quality={100}
-                  sizes="100vw"
-                  className={styles.slideImg}
-                  unoptimized={proj.image.endsWith('.svg')}
-                  priority={i === 0}
-                />
-                <div className={styles.slideOverlayLeft}   aria-hidden />
-                <div className={styles.slideOverlayBottom} aria-hidden />
-                <div className={styles.slideVignette}      aria-hidden />
-              </div>
+                {cat}
+              </button>
+            )
+          })}
+        </div>
+      </div>
 
-              <span className={styles.slideNum} aria-hidden>0{i + 1}</span>
-
-              <div
-                ref={el => { contentRefs.current[i] = el }}
-                className={styles.slideContent}
+      {/* Desktop Showcase View */}
+      <div className={styles.desktopShowcase}>
+        {/* Project Selector Tabs */}
+        <div className={styles.projectListSidebar} role="tablist" aria-orientation="vertical">
+          {filteredProjects.map((proj, idx) => {
+            const isSelected = activeProject?.id === proj.id
+            return (
+              <button
+                key={proj.id}
+                role="tab"
+                aria-selected={isSelected}
+                onClick={() => setSelectedProjectId(proj.id)}
+                className={`${styles.projectTab} ${isSelected ? styles.projectTabActive : ''}`}
               >
-                <div className={styles.slideLeft}>
-                  <div className={styles.meta}>
-                    <span className={styles.typeTag}>{proj.type}</span>
-                  </div>
-                  <h2 className={styles.title}>{proj.title}</h2>
-                  <p  className={styles.subtitle}>{proj.subtitle}</p>
-                  <div className={styles.actionRow}>
-                    {proj.github && (
-                      <a
-                        href={proj.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.liveBtn}
-                      >
-                        <span>GitHub</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </a>
-                    )}
-                    {proj.demo && (
-                      <a
-                        href={proj.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.secondaryBtn}
-                      >
-                        <span>Demo</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </a>
-                    )}
-                  </div>
+                <div className={styles.tabHeader}>
+                  <span className={styles.tabNumber}>0{idx + 1}</span>
+                  <span className={styles.tabType}>{proj.type}</span>
                 </div>
+                <h3 className={styles.tabTitle}>{proj.title}</h3>
+                <p className={styles.tabSubtitle}>{proj.subtitle}</p>
+              </button>
+            )
+          })}
+        </div>
 
-                <div className={styles.slideRight}>
-                  <p className={styles.desc}>{proj.desc}</p>
-                  <dl className={styles.projectDetails}>
-                    <div>
-                      <dt>Problem</dt>
-                      <dd>{proj.problem}</dd>
-                    </div>
-                    <div>
-                      <dt>Solution</dt>
-                      <dd>{proj.solution}</dd>
-                    </div>
-                    <div>
-                      <dt>Challenge</dt>
-                      <dd>{proj.challenge}</dd>
-                    </div>
-                    <div>
-                      <dt>Learning</dt>
-                      <dd>{proj.learning}</dd>
-                    </div>
-                  </dl>
-                  <div className={styles.stack}>
-                    {proj.tech.map(t => (
-                      <span key={t} className={styles.tag}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+        {/* Active Project Feature Card */}
+        {activeProject && (
+          <article className={styles.featuredDisplay} aria-live="polite">
+            <div className={styles.featureVisual}>
+              <Image
+                src={activeProject.image}
+                alt={`${activeProject.title} project graphic`}
+                fill
+                quality={85}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className={styles.featureImg}
+                unoptimized={activeProject.image.endsWith('.svg')}
+              />
+              <div className={styles.featureVisualOverlay} aria-hidden="true" />
             </div>
-          ))}
-        </div>
 
-        {/* Progress bar */}
-        <div className={styles.bottomUI}>
-          <div className={styles.progressTrack}>
-            <div ref={progressRef} className={styles.progressBar} />
-          </div>
-        </div>
+            <div className={styles.featureDetails}>
+              <div className={styles.featureMeta}>
+                <span className={styles.typeBadge}>{activeProject.type}</span>
+                <span className={styles.categoryBadge}>{activeProject.category}</span>
+              </div>
 
-      </section>
-    </div>
+              <h3 className={styles.featureTitle}>{activeProject.title}</h3>
+              <p className={styles.featureSubtitle}>{activeProject.subtitle}</p>
+              <p className={styles.featureDesc}>{activeProject.desc}</p>
+
+              <dl className={styles.problemSolutionGrid}>
+                <div className={styles.specBox}>
+                  <dt className={styles.specTitle}>Problem</dt>
+                  <dd className={styles.specDesc}>{activeProject.problem}</dd>
+                </div>
+                <div className={styles.specBox}>
+                  <dt className={styles.specTitle}>Solution</dt>
+                  <dd className={styles.specDesc}>{activeProject.solution}</dd>
+                </div>
+                <div className={styles.specBox}>
+                  <dt className={styles.specTitle}>Key Learning</dt>
+                  <dd className={styles.specDesc}>{activeProject.learning}</dd>
+                </div>
+                <div className={styles.specBox}>
+                  <dt className={styles.specTitle}>Challenge</dt>
+                  <dd className={styles.specDesc}>{activeProject.challenge}</dd>
+                </div>
+              </dl>
+
+              <div className={styles.techStack} aria-label="Technologies used">
+                {activeProject.tech.map(t => (
+                  <span key={t} className={styles.techPill}>{t}</span>
+                ))}
+              </div>
+
+              <div className={styles.actionRow}>
+                {activeProject.demo && (
+                  <a
+                    href={activeProject.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.liveBtn}
+                    aria-label={`Open live demo for ${activeProject.title}`}
+                  >
+                    <span>Live Application</span>
+                    <FiExternalLink size={15} />
+                  </a>
+                )}
+                {activeProject.github && (
+                  <a
+                    href={activeProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.githubBtn}
+                    aria-label={`View GitHub source code for ${activeProject.title}`}
+                  >
+                    <FiGithub size={15} />
+                    <span>Source Code</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        )}
+      </div>
+
+      {/* Mobile Card Feed (All content fully visible, no truncation/stripping) */}
+      <div className={styles.mobileCardFeed}>
+        {filteredProjects.map((proj, idx) => (
+          <article key={proj.id} className={styles.mobileCard}>
+            <div className={styles.mobileCardHeader}>
+              <span className={styles.mobileNum}>0{idx + 1}</span>
+              <span className={styles.typeBadge}>{proj.type}</span>
+            </div>
+
+            <h3 className={styles.mobileTitle}>{proj.title}</h3>
+            <p className={styles.mobileSubtitle}>{proj.subtitle}</p>
+            <p className={styles.mobileDesc}>{proj.desc}</p>
+
+            <div className={styles.mobileSpecs}>
+              <div className={styles.mobileSpecItem}>
+                <span className={styles.mobileSpecHeading}>Problem</span>
+                <p>{proj.problem}</p>
+              </div>
+              <div className={styles.mobileSpecItem}>
+                <span className={styles.mobileSpecHeading}>Solution</span>
+                <p>{proj.solution}</p>
+              </div>
+            </div>
+
+            <div className={styles.techStack}>
+              {proj.tech.map(t => (
+                <span key={t} className={styles.techPill}>{t}</span>
+              ))}
+            </div>
+
+            <div className={styles.actionRow}>
+              {proj.demo && (
+                <a
+                  href={proj.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.liveBtn}
+                >
+                  <span>Live App</span>
+                  <FiExternalLink size={14} />
+                </a>
+              )}
+              {proj.github && (
+                <a
+                  href={proj.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.githubBtn}
+                >
+                  <FiGithub size={14} />
+                  <span>GitHub</span>
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   )
 }

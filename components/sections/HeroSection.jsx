@@ -4,7 +4,7 @@ import { useEffect, useRef, Fragment } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
-import { FiArrowUpRight, FiDownload } from 'react-icons/fi'
+import { FiArrowUpRight, FiDownload, FiMail } from 'react-icons/fi'
 import { gsap } from '@/lib/gsap'
 
 import profile from '@/data/profile.json'
@@ -42,14 +42,25 @@ export default function HeroSection() {
   const availCardRef   = useRef(null)
   const socialRef      = useRef(null)
 
-  function handleViewProjects() {
-    const scroller = document.querySelector('main')
-    if (scroller) {
-      gsap.to(scroller, { scrollTop: 4 * window.innerHeight, duration: 1.0, ease: 'power3.inOut' })
+  function handleViewProjects(e) {
+    e.preventDefault()
+    const projects = document.getElementById('projects')
+    if (projects) {
+      projects.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  function handleContactMe(e) {
+    e.preventDefault()
+    const contact = document.getElementById('contact')
+    if (contact) {
+      contact.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     const section = sectionRef.current
     if (!section) return
 
@@ -61,30 +72,25 @@ export default function HeroSection() {
 
     const fadeX = [taglineCardRef.current, availCardRef.current].filter(Boolean)
 
-    gsap.set(fadeY, { opacity: 0, y: 30 })
+    gsap.set(fadeY, { opacity: 0, y: 24 })
     gsap.set(fadeX, { opacity: 0, x: 20 })
-    if (photoRef.current)  gsap.set(photoRef.current,  { opacity: 0, x: 80 })
+    if (photoRef.current)  gsap.set(photoRef.current,  { opacity: 0, x: 50 })
     if (socialRef.current) gsap.set(socialRef.current, { opacity: 0, x: -20 })
 
-    const tl = gsap.timeline({ paused: true })
-    tl.to(greetRef.current,       { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' })
-      .to(roleRef.current,        { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
-      .to(firstName.current,      { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.2')
-      .to(lastName.current,       { opacity: 1, y: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.4')
-      .to(photoRef.current,       { opacity: 1, x: 0, duration: 0.7,  ease: 'power2.out' }, '-=0.5')
-      .to(pillsRef.current,       { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+    const tl = gsap.timeline({ delay: 0.1 })
+    tl.to(greetRef.current,       { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' })
+      .to(roleRef.current,        { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.2')
+      .to(firstName.current,      { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.2')
+      .to(lastName.current,       { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
+      .to(photoRef.current,       { opacity: 1, x: 0, duration: 0.6,  ease: 'power2.out' }, '-=0.4')
+      .to(pillsRef.current,       { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.3')
       .to(ctaBtnRef.current,      { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.2')
-      .to(statsRef.current,       { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.2')
-      .to(taglineCardRef.current, { opacity: 1, x: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.5')
-      .to(availCardRef.current,   { opacity: 1, x: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.3')
-      .to(socialRef.current,      { opacity: 1, x: 0, duration: 0.5,  ease: 'power2.out' }, '-=0.4')
+      .to(statsRef.current,       { opacity: 1, y: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.2')
+      .to(taglineCardRef.current, { opacity: 1, x: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.3')
+      .to(availCardRef.current,   { opacity: 1, x: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.2')
+      .to(socialRef.current,      { opacity: 1, x: 0, duration: 0.4,  ease: 'power2.out' }, '-=0.3')
 
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { tl.play(); observer.disconnect() } },
-      { threshold: 0.3 },
-    )
-    observer.observe(section)
-    return () => { observer.disconnect(); tl.kill() }
+    return () => tl.kill()
   }, [])
 
   const sidebarSocials = SIDEBAR_LABELS
@@ -92,22 +98,23 @@ export default function HeroSection() {
     .filter(Boolean)
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section id="hero" ref={sectionRef} className={styles.section} aria-label="Candidate Overview">
 
       <HeroBackground />
 
       {/* Photo */}
       <div ref={photoRef} className={styles.photo}>
         <Image
-          src="/assets/hero.png" alt={profile.name.full}
-          fill priority quality={100}
+          src="/assets/hero.webp"
+          alt={profile.name.full}
+          fill priority quality={85}
           sizes="(min-width: 768px) 55vw, 100vw"
           className={styles.photoImg}
         />
       </div>
 
       {/* Social Sidebar */}
-      <div ref={socialRef} className={styles.socialSidebar}>
+      <div ref={socialRef} className={styles.socialSidebar} aria-label="Social Links Sidebar">
         {sidebarSocials.map(social => {
           const Icon = SOCIAL_ICON_MAP[social.label]
           if (!Icon) return null
@@ -120,14 +127,14 @@ export default function HeroSection() {
               className={styles.socialLink}
               aria-label={social.label}
             >
-              <Icon size={15} />
+              <Icon size={16} />
               <span className={styles.socialLabel}>{social.label}</span>
             </a>
           )
         })}
-        <div className={styles.scrollIndicator}>
+        <div className={styles.scrollIndicator} aria-hidden="true">
           <span className={styles.scrollText}>Scroll down</span>
-          <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="12" height="20" rx="6" stroke="currentColor" strokeWidth="1.5"/>
             <circle cx="7" cy="6" r="2" fill="currentColor"/>
           </svg>
@@ -140,7 +147,7 @@ export default function HeroSection() {
         {/* Greeting */}
         <div className={styles.greeting}>
           <p ref={greetRef} className={styles.greetText}>{"Hi, I'm"}</p>
-          <p ref={roleRef}  className={styles.roleText}>{profile.roles.short}</p>
+          <p ref={roleRef}  className={styles.roleText}>{profile.roles.detailed}</p>
         </div>
 
         {/* Stacked Name */}
@@ -150,7 +157,7 @@ export default function HeroSection() {
         </div>
 
         {/* Tag Pills */}
-        <div ref={pillsRef} className={styles.pills}>
+        <div ref={pillsRef} className={styles.pills} aria-label="Technical Highlights">
           {content.hero.pills.map((tag, i) => (
             <Fragment key={tag}>
               <span className={styles.pill}>{tag}</span>
@@ -161,12 +168,16 @@ export default function HeroSection() {
           ))}
         </div>
 
+        {/* Primary Call to Actions */}
         <div ref={ctaBtnRef} className={styles.ctaGroup}>
-          <button type="button" className={styles.viewBtn} onClick={handleViewProjects}>
-            View Projects <FiArrowUpRight />
-          </button>
-          <a href={profile.resume.href} className={styles.resumeBtn} download>
-            {profile.resume.label} <FiDownload />
+          <a href="#projects" className={styles.viewBtn} onClick={handleViewProjects}>
+            View Projects <FiArrowUpRight size={16} />
+          </a>
+          <a href={profile.resume.href} className={styles.resumeBtn} download aria-label="Download Candidate Resume PDF">
+            {profile.resume.label} <FiDownload size={16} />
+          </a>
+          <a href="#contact" className={styles.contactBtn} onClick={handleContactMe}>
+            Contact Me <FiMail size={16} />
           </a>
         </div>
 
@@ -198,7 +209,7 @@ export default function HeroSection() {
               <span className={styles.availStatus}>{content.hero.availableLabel}</span>
             </div>
             <p className={styles.locationLine}>Based in {profile.location.based}</p>
-            <p className={styles.locationLine}>Available {profile.location.availability}</p>
+            <p className={styles.locationLine}>Status: {profile.location.availability}</p>
           </div>
         )}
       </div>

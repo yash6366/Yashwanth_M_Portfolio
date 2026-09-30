@@ -14,7 +14,7 @@ export const size = {
 export const contentType = 'image/png'
 
 const ACCENT = '#f7931e'
-const photoUrl = `${SITE_URL}/assets/hero.png`
+const photoUrl = `${SITE_URL}/assets/hero.webp`
 
 export default function Image() {
   return new ImageResponse(
@@ -104,7 +104,7 @@ export default function Image() {
               style={{
                 fontSize: 92,
                 fontWeight: 900,
-                color: '#2d2d2d',
+                color: '#3d3d3d',
                 letterSpacing: -4,
               }}
             >
@@ -116,28 +116,28 @@ export default function Image() {
             style={{
               fontSize: 24,
               lineHeight: 1.5,
-              color: '#9d9d9d',
+              color: '#a0a0a0',
               maxWidth: 580,
               marginBottom: 34,
             }}
           >
-            2026 CSE graduate building Java, full-stack, and AI/ML projects.
+            2026 CSE graduate building Java, full-stack web applications, and AI/ML systems.
           </div>
 
           <div
             style={{
               display: 'flex',
-              gap: 12,
+              gap: 10,
               marginBottom: 36,
               flexWrap: 'wrap',
             }}
           >
-            {['Java', 'React', 'Python', 'AI/ML'].map((tag) => (
+            {['Java', 'Python', 'React', 'Next.js', 'AI/ML', 'PostgreSQL'].map((tag) => (
               <div
                 key={tag}
                 style={{
-                  padding: '10px 18px',
-                  border: '1px solid rgba(255,255,255,0.12)',
+                  padding: '8px 16px',
+                  border: '1px solid rgba(247,147,30,0.3)',
                   borderRadius: 999,
                   color: ACCENT,
                   fontSize: 14,

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from '@/lib/gsap'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/ScreenLoader.module.css'
@@ -8,24 +8,23 @@ import styles from '@/styles/sections/ScreenLoader.module.css'
 export default function ScreenLoader({ onDismiss }) {
   const overlayRef = useRef(null)
 
-  function handleStart() {
-    window.dispatchEvent(
-      new CustomEvent('loader-dismissed')
-    )
+  const handleStart = useCallback(() => {
+    window.dispatchEvent(new CustomEvent('loader-dismissed'))
 
     const overlay = overlayRef.current
-    if (!overlay) return
+    if (!overlay) {
+      onDismiss?.()
+      return
+    }
 
     overlay.style.pointerEvents = 'none'
 
-    // Create split layers
     const top = document.createElement('div')
     top.className = styles.splitTop
 
     const bottom = document.createElement('div')
     bottom.className = styles.splitBottom
 
-    // Center line
     const line = document.createElement('div')
     line.className = styles.centerLine
 
@@ -33,47 +32,35 @@ export default function ScreenLoader({ onDismiss }) {
     document.body.appendChild(bottom)
     document.body.appendChild(line)
 
-    // Hide original overlay fast
     gsap.to(overlay, {
       opacity: 0,
       duration: 0.2,
       ease: 'power2.out',
     })
 
-    // Animate line
     gsap.fromTo(
       line,
-      {
-        scaleX: 0,
-        opacity: 0,
-      },
-      {
-        scaleX: 1,
-        opacity: 1,
-        duration: 0.25,
-        ease: 'power2.out',
-      }
+      { scaleX: 0, opacity: 0 },
+      { scaleX: 1, opacity: 1, duration: 0.25, ease: 'power2.out' }
     )
 
-    // Split animation
     gsap.to(top, {
       y: '-100%',
-      duration: 1,
-      ease: 'expo.inOut',
+      duration: 0.8,
+      ease: 'power3.inOut',
       force3D: true,
     })
 
     gsap.to(bottom, {
       y: '100%',
-      duration: 1,
-      ease: 'expo.inOut',
+      duration: 0.8,
+      ease: 'power3.inOut',
       force3D: true,
     })
 
-    // Fade line away
     gsap.to(line, {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.25,
       delay: 0.2,
     })
 
@@ -81,29 +68,53 @@ export default function ScreenLoader({ onDismiss }) {
       top.remove()
       bottom.remove()
       line.remove()
+      window.dispatchEvent(new CustomEvent('loader-animation-done'))
+      onDismiss?.()
+    }, 800)
+  }, [onDismiss])
 
-      window.dispatchEvent(
-        new CustomEvent('loader-animation-done')
-      )
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onDismiss?.()
+      return
+    }
 
-      onDismiss()
-    }, 1000)
-  }
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+        e.preventDefault()
+        handleStart()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [handleStart, onDismiss])
 
   return (
-    <div ref={overlayRef} className={styles.overlay}>
-      <div className={styles.liquidBg} aria-hidden />
+    <div
+      ref={overlayRef}
+      className={styles.overlay}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Welcome Intro"
+    >
+      <div className={styles.liquidBg} aria-hidden="true" />
 
       <p className={styles.monogram}>
-        {profile.name.full}
+        {profile.name.full} • 2026 CSE Graduate
       </p>
 
       <button
         className={styles.startBtn}
         onClick={handleStart}
+        autoFocus
+        aria-label="Enter Portfolio"
       >
-        Start
+        Explore Portfolio
       </button>
+
+      <span className={styles.pressKeyHint}>
+        Press <kbd className={styles.kbd}>Enter</kbd> or click to begin
+      </span>
     </div>
   )
 }

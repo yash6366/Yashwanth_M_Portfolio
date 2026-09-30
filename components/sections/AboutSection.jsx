@@ -3,16 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from '@/lib/gsap'
-import { FaGithub, FaLinkedinIn, FaMedium, FaInstagram, FaYoutube } from 'react-icons/fa'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa'
 import profile from '@/data/profile.json'
 import styles from '@/styles/sections/AboutSection.module.css'
 
-const BIO      = profile.bio
+const BIO = profile.bio
 const WHO_ITEMS = profile.skills
-
-const ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn, Medium: FaMedium, Instagram: FaInstagram, YouTube: FaYoutube }
-
-const SOCIALS = profile.socials.map(s => ({ Icon: ICON_MAP[s.label], href: s.href, label: s.label }))
+const ICON_MAP = { GitHub: FaGithub, LinkedIn: FaLinkedinIn }
+const SOCIALS = profile.socials.map(s => ({ Icon: ICON_MAP[s.label] || FaGithub, href: s.href, label: s.label }))
 
 export default function AboutSection() {
   const sectionRef  = useRef(null)
@@ -28,34 +26,33 @@ export default function AboutSection() {
     const section = sectionRef.current
     if (!section) return
 
-    const scroller = document.querySelector('main')
-    if (!scroller) return
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    let isActive = false
-
-    function resetAnim() {
-      clearInterval(intervalRef.current)
-      gsap.killTweensOf(photoRef.current)
-      gsap.killTweensOf(contentRef.current)
-      const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
-      gsap.killTweensOf(socialIcons)
-      gsap.set(photoRef.current,   { opacity: 0, x: -50 })
-      gsap.set(contentRef.current, { opacity: 0, y:  40 })
-      gsap.set(socialIcons, { opacity: 0, y: 20 })
-      setTyped(0)
-      setDone(false)
-    }
+    let hasPlayed = false
 
     function playAnim() {
-      resetAnim()
-      gsap.to(photoRef.current,   { opacity: 1, x: 0, duration: 0.9, ease: 'power3.out' })
-      gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.15 })
+      if (hasPlayed) return
+      hasPlayed = true
+
+      if (prefersReducedMotion) {
+        setTyped(BIO.length)
+        setDone(true)
+        gsap.set(photoRef.current, { opacity: 1, x: 0 })
+        gsap.set(contentRef.current, { opacity: 1, y: 0 })
+        const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
+        gsap.set(socialIcons, { opacity: 1, y: 0 })
+        return
+      }
+
+      gsap.to(photoRef.current, { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' })
+      gsap.to(contentRef.current, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.1 })
       const socialIcons = socialsRef.current?.querySelectorAll('a') ?? []
-      gsap.to(socialIcons, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.1, delay: 0.5 })
+      gsap.to(socialIcons, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.08, delay: 0.3 })
 
       let i = 0
+      clearInterval(intervalRef.current)
       intervalRef.current = setInterval(() => {
-        i = Math.min(i + 6, BIO.length)
+        i = Math.min(i + 8, BIO.length)
         setTyped(i)
         if (i >= BIO.length) {
           clearInterval(intervalRef.current)
@@ -64,52 +61,58 @@ export default function AboutSection() {
       }, 16)
     }
 
-    resetAnim()
+    // Initial state
+    gsap.set(photoRef.current, { opacity: 0, x: -30 })
+    gsap.set(contentRef.current, { opacity: 0, y: 30 })
 
-    function onScroll() {
-      const inRange = Math.abs(scroller.scrollTop - section.offsetTop) < window.innerHeight * 0.5
-      if (inRange && !isActive)  { isActive = true;  playAnim() }
-      if (!inRange && isActive)  { isActive = false; resetAnim() }
-    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        playAnim()
+      }
+    }, { threshold: 0.25 })
 
-    scroller.addEventListener('scroll', onScroll, { passive: true })
+    observer.observe(section)
+
     return () => {
+      observer.disconnect()
       clearInterval(intervalRef.current)
-      scroller.removeEventListener('scroll', onScroll)
     }
   }, [])
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section id="about" ref={sectionRef} className={styles.section} aria-label="About Yashwanth M">
+
+      {/* Screen Reader Full Bio */}
+      <p className="sr-only">{BIO}</p>
 
       {/* ── Left: photo + signature + socials ───────── */}
       <div ref={photoRef} className={styles.photoCol}>
         <div className={styles.photoWrap}>
           <div className={styles.photoFrame} data-about-photo>
             <Image
-              src="/assets/me.png"
+              src="/assets/me.webp"
               alt={profile.name.full}
               fill
-              quality={100}
+              quality={85}
               sizes="(min-width: 768px) 30vw, 100vw"
               className={styles.photoImg}
             />
           </div>
-          <p className={styles.signature}>{profile.name.first}</p>
+          <p className={styles.signature} aria-hidden="true">{profile.name.first}</p>
         </div>
 
         {/* Social icons */}
-        <div ref={socialsRef} className={styles.socials}>
+        <div ref={socialsRef} className={styles.socials} aria-label="Social profiles">
           {SOCIALS.map(({ Icon, href, label }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={label}
+              aria-label={`Visit ${label} Profile`}
               className={styles.socialLink}
             >
-              <Icon />
+              <Icon size={18} />
             </a>
           ))}
         </div>
@@ -118,21 +121,21 @@ export default function AboutSection() {
       {/* ── Right: content ───────────────────────────── */}
       <div ref={contentRef} className={styles.content}>
 
-        {/* Who I Am - label + infinite marquee */}
+        {/* Who I Am - label + marquee */}
         <p className={styles.whoLabel}>Who I Am</p>
-        <div className={styles.marqueeWrap}>
+        <div className={styles.marqueeWrap} aria-hidden="true">
           <div className={styles.marqueeTrack}>
             {[...WHO_ITEMS, ...WHO_ITEMS].map((item, i) => (
               <span key={i} className={styles.marqueeItem}>
                 {item}
-                <span className={styles.marqueeDot}>·</span>
+                <span className={styles.marqueeDot}>•</span>
               </span>
             ))}
           </div>
         </div>
 
-        {/* Bio text - typewriter: all chars always in DOM, only color changes */}
-        <div className={styles.bioWrap}>
+        {/* Visual bio text */}
+        <div className={styles.bioWrap} aria-hidden="true">
           <p className={styles.bio}>
             {BIO.split('').map((char, i) => (
               <span
